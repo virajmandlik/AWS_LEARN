@@ -1,0 +1,68 @@
+{
+  "$schema": "./docs.config.schema.json",
+  "settings": {
+    "userAgent": "aws-docs-notion-sync/1.0",
+    "maxDocCharsPerFetch": 40000,
+    "fetchConcurrency": 3,
+    "diff": {
+      "minChangeRatio": 0,
+      "ignoreLineRegex": [
+        "^\\s*$",
+        "^Last updated:"
+      ]
+    },
+    "ai": {
+      "model": "openai/gpt-4o",
+      "maxOutputTokens": 4000,
+      "maxInputCharsPerVersion": 12000,
+      "mergeStrategy": "preserve-user-notes"
+    }
+  },
+  "tracked": [
+    {
+      "id": "iam-introduction",
+      "displayName": "IAM — Introduction",
+      "awsUrl": "https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html",
+      "notionPageId": "3466ba731a34804f88e4c063036e81b4",
+      "tags": [
+        "iam",
+        "security",
+        "identity"
+      ],
+      "watchRecommendations": true
+    },
+    {
+      "id": "iam-best-practices",
+      "displayName": "IAM — Security best practices",
+      "awsUrl": "https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html",
+      "notionPageId": "3466ba731a34804f88e4c063036e81b4",
+      "tags": [
+        "iam",
+        "best-practices"
+      ],
+      "watchRecommendations": false
+    },
+    {
+      "id": "ec2-concepts",
+      "displayName": "EC2 — Concepts and overview",
+      "awsUrl": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html",
+      "notionPageId": "3466ba731a348023b723fa397e926a7d",
+      "tags": [
+        "ec2",
+        "compute"
+      ],
+      "watchRecommendations": true
+    },
+    {
+      "id": "ec2-instance-types",
+      "displayName": "EC2 — Instance types",
+      "awsUrl": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html",
+      "notionPageId": "3466ba731a348023b723fa397e926a7d",
+      "tags": [
+        "ec2",
+        "compute"
+      ],
+      "watchRecommendations": false
+    }
+  ]
+}

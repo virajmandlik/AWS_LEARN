@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 720" font-family="Arial, sans-serif">
+  <defs>
+    <marker id="arr21" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#232F3E"/>
+    </marker>
+  </defs>
+  <rect width="1100" height="720" fill="#F7F8FA"/>
+  <text x="550" y="40" text-anchor="middle" font-size="24" font-weight="bold" fill="#232F3E">VPC Peering + VPC Flow Logs</text>
+  <text x="550" y="65" text-anchor="middle" font-size="13" fill="#666" font-style="italic">Peering is point-to-point, NOT transitive.  Flow logs capture ENI traffic metadata.</text>
+
+  <!-- Top half: peering -->
+  <rect x="40" y="90" width="1020" height="290" rx="10" fill="#fff" stroke="#232F3E" stroke-width="2"/>
+  <text x="550" y="115" text-anchor="middle" font-size="16" font-weight="bold" fill="#232F3E">VPC Peering -- Non-Transitive Topology</text>
+
+  <!-- VPC A -->
+  <rect x="80" y="140" width="220" height="200" rx="8" fill="#E8F4FD" stroke="#0073BB" stroke-width="2"/>
+  <text x="190" y="165" text-anchor="middle" font-size="13" font-weight="bold" fill="#0073BB">VPC A  10.0.0.0/16</text>
+  <rect x="105" y="185" width="170" height="50" rx="5" fill="#fff" stroke="#0073BB"/>
+  <text x="190" y="207" text-anchor="middle" font-size="11" font-weight="bold">App tier</text>
+  <text x="190" y="223" text-anchor="middle" font-size="10">10.0.1.10</text>
+  <text x="190" y="265" text-anchor="middle" font-size="10" fill="#666">Route table:</text>
+  <text x="190" y="280" text-anchor="middle" font-size="10" fill="#666">20.0.0.0/16 -&gt; pcx-A-B</text>
+  <text x="190" y="295" text-anchor="middle" font-size="10" fill="#666">(can talk to B directly)</text>
+
+  <!-- VPC B -->
+  <rect x="440" y="140" width="220" height="200" rx="8" fill="#FFF3E0" stroke="#FF9900" stroke-width="2"/>
+  <text x="550" y="165" text-anchor="middle" font-size="13" font-weight="bold" fill="#D17C00">VPC B  20.0.0.0/16</text>
+  <rect x="465" y="185" width="170" height="50" rx="5" fill="#fff" stroke="#FF9900"/>
+  <text x="550" y="207" text-anchor="middle" font-size="11" font-weight="bold">Shared services</text>
+  <text x="550" y="223" text-anchor="middle" font-size="10">20.0.1.10</text>
+  <text x="550" y="265" text-anchor="middle" font-size="10" fill="#666">Peered with A AND C</text>
+  <text x="550" y="280" text-anchor="middle" font-size="10" fill="#666">but A can NOT reach C</text>
+  <text x="550" y="295" text-anchor="middle" font-size="10" fill="#666">through B (no transitive!)</text>
+
+  <!-- VPC C -->
+  <rect x="800" y="140" width="220" height="200" rx="8" fill="#E8F5E9" stroke="#3F8624" stroke-width="2"/>
+  <text x="910" y="165" text-anchor="middle" font-size="13" font-weight="bold" fill="#3F8624">VPC C  30.0.0.0/16</text>
+  <rect x="825" y="185" width="170" height="50" rx="5" fill="#fff" stroke="#3F8624"/>
+  <text x="910" y="207" text-anchor="middle" font-size="11" font-weight="bold">Data lake</text>
+  <text x="910" y="223" text-anchor="middle" font-size="10">30.0.1.10</text>
+  <text x="910" y="265" text-anchor="middle" font-size="10" fill="#666">Route table:</text>
+  <text x="910" y="280" text-anchor="middle" font-size="10" fill="#666">20.0.0.0/16 -&gt; pcx-B-C</text>
+  <text x="910" y="295" text-anchor="middle" font-size="10" fill="#666">(NO route to A)</text>
+
+  <!-- peering links -->
+  <line x1="300" y1="210" x2="440" y2="210" stroke="#01A88D" stroke-width="3" marker-end="url(#arr21)"/>
+  <text x="370" y="200" text-anchor="middle" font-size="11" font-weight="bold" fill="#01A88D">pcx-A-B</text>
+
+  <line x1="660" y1="210" x2="800" y2="210" stroke="#01A88D" stroke-width="3" marker-end="url(#arr21)"/>
+  <text x="730" y="200" text-anchor="middle" font-size="11" font-weight="bold" fill="#01A88D">pcx-B-C</text>
+
+  <line x1="300" y1="320" x2="800" y2="320" stroke="#C62828" stroke-width="2" stroke-dasharray="5 5"/>
+  <text x="550" y="335" text-anchor="middle" font-size="12" font-weight="bold" fill="#C62828">A &lt;X&gt; C  (no transitive routing -- need direct pcx-A-C or TGW)</text>
+
+  <!-- Bottom half: Flow Logs -->
+  <rect x="40" y="400" width="1020" height="305" rx="10" fill="#fff" stroke="#232F3E" stroke-width="2"/>
+  <text x="550" y="425" text-anchor="middle" font-size="16" font-weight="bold" fill="#232F3E">VPC Flow Logs -- Where to Capture, Where to Send</text>
+
+  <!-- Sources -->
+  <rect x="60" y="450" width="280" height="225" rx="8" fill="#E8F4FD" stroke="#0073BB"/>
+  <text x="200" y="475" text-anchor="middle" font-size="14" font-weight="bold" fill="#0073BB">Sources (3 levels)</text>
+  <rect x="80" y="490" width="240" height="50" rx="5" fill="#fff" stroke="#0073BB"/>
+  <text x="200" y="512" text-anchor="middle" font-size="12" font-weight="bold">VPC</text>
+  <text x="200" y="528" text-anchor="middle" font-size="10">all ENIs in the VPC</text>
+  <rect x="80" y="550" width="240" height="50" rx="5" fill="#fff" stroke="#0073BB"/>
+  <text x="200" y="572" text-anchor="middle" font-size="12" font-weight="bold">Subnet</text>
+  <text x="200" y="588" text-anchor="middle" font-size="10">all ENIs in this subnet</text>
+  <rect x="80" y="610" width="240" height="50" rx="5" fill="#fff" stroke="#0073BB"/>
+  <text x="200" y="632" text-anchor="middle" font-size="12" font-weight="bold">ENI</text>
+  <text x="200" y="648" text-anchor="middle" font-size="10">single network interface</text>
+
+  <!-- Flow Log engine -->
+  <rect x="390" y="490" width="220" height="170" rx="8" fill="#FFF3E0" stroke="#FF9900" stroke-width="2"/>
+  <text x="500" y="515" text-anchor="middle" font-size="14" font-weight="bold" fill="#D17C00">VPC Flow Log</text>
+  <text x="500" y="535" text-anchor="middle" font-size="10">metadata only -- NOT payload</text>
+  <text x="500" y="555" text-anchor="middle" font-size="10">ACCEPT | REJECT | ALL</text>
+  <text x="500" y="575" text-anchor="middle" font-size="10">1-min or 10-min agg</text>
+  <text x="500" y="595" text-anchor="middle" font-size="10">v2 / v3 / v4 / v5 fields</text>
+  <text x="500" y="615" text-anchor="middle" font-size="10">srcaddr dstaddr srcport</text>
+  <text x="500" y="635" text-anchor="middle" font-size="10">dstport protocol bytes pkts</text>
+  <text x="500" y="655" text-anchor="middle" font-size="10">action log-status</text>
+
+  <line x1="340" y1="515" x2="390" y2="540" stroke="#232F3E" stroke-width="1.5" marker-end="url(#arr21)"/>
+  <line x1="340" y1="575" x2="390" y2="575" stroke="#232F3E" stroke-width="1.5" marker-end="url(#arr21)"/>
+  <line x1="340" y1="635" x2="390" y2="610" stroke="#232F3E" stroke-width="1.5" marker-end="url(#arr21)"/>
+
+  <!-- Destinations -->
+  <rect x="660" y="450" width="380" height="225" rx="8" fill="#E8F5E9" stroke="#3F8624"/>
+  <text x="850" y="475" text-anchor="middle" font-size="14" font-weight="bold" fill="#3F8624">Destinations</text>
+
+  <rect x="680" y="490" width="340" height="50" rx="5" fill="#fff" stroke="#3F8624"/>
+  <text x="850" y="512" text-anchor="middle" font-size="12" font-weight="bold">CloudWatch Logs</text>
+  <text x="850" y="528" text-anchor="middle" font-size="10">live analysis with Logs Insights, alarms</text>
+
+  <rect x="680" y="550" width="340" height="50" rx="5" fill="#fff" stroke="#3F8624"/>
+  <text x="850" y="572" text-anchor="middle" font-size="12" font-weight="bold">Amazon S3</text>
+  <text x="850" y="588" text-anchor="middle" font-size="10">cheapest, Athena / Glue ad-hoc queries</text>
+
+  <rect x="680" y="610" width="340" height="50" rx="5" fill="#fff" stroke="#3F8624"/>
+  <text x="850" y="632" text-anchor="middle" font-size="12" font-weight="bold">Amazon Data Firehose</text>
+  <text x="850" y="648" text-anchor="middle" font-size="10">stream to OpenSearch, Splunk, Datadog</text>
+
+  <line x1="610" y1="515" x2="680" y2="515" stroke="#3F8624" stroke-width="1.5" marker-end="url(#arr21)"/>
+  <line x1="610" y1="575" x2="680" y2="575" stroke="#3F8624" stroke-width="1.5" marker-end="url(#arr21)"/>
+  <line x1="610" y1="635" x2="680" y2="635" stroke="#3F8624" stroke-width="1.5" marker-end="url(#arr21)"/>
+</svg>

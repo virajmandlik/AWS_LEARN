@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 680" font-family="Arial, sans-serif">
+  <defs>
+    <marker id="arr23" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#fff"/>
+    </marker>
+    <marker id="arr23b" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#232F3E"/>
+    </marker>
+  </defs>
+  <rect width="1100" height="680" fill="#F7F8FA"/>
+  <text x="550" y="40" text-anchor="middle" font-size="24" font-weight="bold" fill="#232F3E">AWS PrivateLink -- Provider / Consumer Model</text>
+  <text x="550" y="65" text-anchor="middle" font-size="13" fill="#666" font-style="italic">Expose a service privately to other VPCs/accounts without peering, IGW, NAT, or public IPs</text>
+
+  <!-- Provider VPC -->
+  <rect x="40" y="100" width="500" height="500" rx="10" fill="#F0F8FF" stroke="#0073BB" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="60" y="125" font-size="14" font-weight="bold" fill="#0073BB">Provider VPC (service owner)</text>
+  <text x="60" y="143" font-size="11" fill="#666">Hosts the application that consumers connect to</text>
+
+  <!-- service backend -->
+  <rect x="120" y="170" width="340" height="100" rx="8" fill="#fff" stroke="#FF9900" stroke-width="2"/>
+  <text x="290" y="195" text-anchor="middle" font-size="13" font-weight="bold">Service Backend</text>
+  <rect x="140" y="210" width="140" height="45" rx="5" fill="#FFF3E0" stroke="#FF9900"/>
+  <text x="210" y="232" text-anchor="middle" font-size="11" font-weight="bold">EC2 / ECS / Fargate</text>
+  <text x="210" y="247" text-anchor="middle" font-size="10">your application</text>
+  <rect x="300" y="210" width="140" height="45" rx="5" fill="#FFF3E0" stroke="#FF9900"/>
+  <text x="370" y="232" text-anchor="middle" font-size="11" font-weight="bold">RDS / Lambda</text>
+  <text x="370" y="247" text-anchor="middle" font-size="10">data layer</text>
+
+  <!-- NLB -->
+  <rect x="120" y="310" width="340" height="80" rx="8" fill="#01A88D" stroke="#232F3E" stroke-width="2"/>
+  <text x="290" y="335" text-anchor="middle" font-size="14" font-weight="bold" fill="#fff">Network Load Balancer  (NLB)</text>
+  <text x="290" y="355" text-anchor="middle" font-size="11" fill="#fff">required front-end for PrivateLink</text>
+  <text x="290" y="375" text-anchor="middle" font-size="10" fill="#fff">(Gateway Load Balancer also supported)</text>
+
+  <line x1="290" y1="270" x2="290" y2="310" stroke="#232F3E" stroke-width="1.5" marker-end="url(#arr23b)"/>
+
+  <!-- service endpoint -->
+  <rect x="120" y="425" width="340" height="80" rx="8" fill="#0073BB" stroke="#232F3E" stroke-width="2"/>
+  <text x="290" y="450" text-anchor="middle" font-size="14" font-weight="bold" fill="#fff">Endpoint Service</text>
+  <text x="290" y="470" text-anchor="middle" font-size="11" fill="#fff">com.amazonaws.vpce.region.vpce-svc-xxxx</text>
+  <text x="290" y="490" text-anchor="middle" font-size="10" fill="#fff">whitelist of consumer principals (accounts / IAM)</text>
+
+  <line x1="290" y1="390" x2="290" y2="425" stroke="#232F3E" stroke-width="1.5" marker-end="url(#arr23b)"/>
+
+  <text x="290" y="540" text-anchor="middle" font-size="11" fill="#666">Service can be in same / different account / Region</text>
+  <text x="290" y="558" text-anchor="middle" font-size="11" fill="#666">Provider sees a connection request -- approve or auto-accept</text>
+
+  <!-- Consumer VPC -->
+  <rect x="600" y="100" width="460" height="500" rx="10" fill="#FFF8E1" stroke="#FF9900" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="620" y="125" font-size="14" font-weight="bold" fill="#D17C00">Consumer VPC</text>
+  <text x="620" y="143" font-size="11" fill="#666">Wants to reach the provider privately</text>
+
+  <!-- Client -->
+  <rect x="650" y="170" width="360" height="80" rx="8" fill="#fff" stroke="#0073BB" stroke-width="2"/>
+  <text x="830" y="195" text-anchor="middle" font-size="13" font-weight="bold">Client Application</text>
+  <text x="830" y="215" text-anchor="middle" font-size="11">EC2 / Lambda / on-prem (via VPN/DX)</text>
+  <text x="830" y="235" text-anchor="middle" font-size="10">Calls https://provider-service.example.com</text>
+
+  <!-- DNS -->
+  <rect x="650" y="280" width="360" height="60" rx="8" fill="#E1F5FE" stroke="#0073BB"/>
+  <text x="830" y="303" text-anchor="middle" font-size="12" font-weight="bold" fill="#0073BB">Route 53 Private DNS</text>
+  <text x="830" y="322" text-anchor="middle" font-size="10">CNAME -&gt; vpce-XXXX.region.vpce.amazonaws.com</text>
+
+  <!-- Interface endpoint -->
+  <rect x="650" y="370" width="360" height="80" rx="8" fill="#0073BB" stroke="#232F3E" stroke-width="2"/>
+  <text x="830" y="395" text-anchor="middle" font-size="14" font-weight="bold" fill="#fff">Interface VPC Endpoint  (PrivateLink)</text>
+  <text x="830" y="415" text-anchor="middle" font-size="11" fill="#fff">ENI with private IP in each subnet  +  SG</text>
+  <text x="830" y="435" text-anchor="middle" font-size="10" fill="#fff">Resolves the provider service privately</text>
+
+  <line x1="830" y1="250" x2="830" y2="280" stroke="#232F3E" stroke-width="1.5" marker-end="url(#arr23b)"/>
+  <line x1="830" y1="340" x2="830" y2="370" stroke="#232F3E" stroke-width="1.5" marker-end="url(#arr23b)"/>
+
+  <text x="830" y="490" text-anchor="middle" font-size="11" fill="#666">No CIDR overlap concerns -- different VPCs OK</text>
+  <text x="830" y="510" text-anchor="middle" font-size="11" fill="#666">Scales to thousands of consumer connections</text>
+
+  <!-- Big arrow between -->
+  <line x1="460" y1="465" x2="650" y2="410" stroke="#232F3E" stroke-width="3" stroke-dasharray="8 4" marker-end="url(#arr23b)"/>
+  <text x="555" y="425" text-anchor="middle" font-size="11" font-weight="bold" fill="#232F3E">PrivateLink path</text>
+  <text x="555" y="445" text-anchor="middle" font-size="10" fill="#232F3E">over AWS backbone -- never public</text>
+
+  <!-- Footer -->
+  <rect x="40" y="615" width="1020" height="55" rx="6" fill="#FCE4EC" stroke="#C7077E"/>
+  <text x="550" y="640" text-anchor="middle" font-size="12" font-weight="bold" fill="#C7077E">PrivateLink uses ENIs in consumer VPC and NLB in provider VPC -- one-way, unidirectional, private.</text>
+  <text x="550" y="657" text-anchor="middle" font-size="11" fill="#232F3E">Common use: SaaS APIs (Snowflake, Datadog), internal microservices across accounts, multi-tenant platforms.</text>
+</svg>

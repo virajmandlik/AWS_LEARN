@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" font-family="Arial, sans-serif">
+  <defs>
+    <marker id="arrow15" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#232F3E"/>
+    </marker>
+    <linearGradient id="healthGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E88E5"/>
+      <stop offset="100%" stop-color="#0D47A1"/>
+    </linearGradient>
+  </defs>
+  <rect width="1000" height="520" fill="#F7F8FA"/>
+  <text x="500" y="40" text-anchor="middle" font-size="22" font-weight="bold" fill="#232F3E">AWS Health Dashboard - Service &amp; Account Health</text>
+  <text x="500" y="62" text-anchor="middle" font-size="13" fill="#666" font-style="italic">Unified PHD + SHD * personalized to your account * free for all customers</text>
+
+  <!-- AWS Health center -->
+  <rect x="330" y="120" width="340" height="160" rx="15" fill="url(#healthGrad)" stroke="#232F3E" stroke-width="2"/>
+  <text x="500" y="150" text-anchor="middle" font-size="18" font-weight="bold" fill="#fff">AWS Health</text>
+  <text x="500" y="170" text-anchor="middle" font-size="11" fill="#fff">delivers Health events about your account</text>
+
+  <g font-size="11" fill="#fff">
+    <rect x="350" y="185" width="140" height="40" rx="5" fill="rgba(255,255,255,0.18)" stroke="#fff"/>
+    <text x="420" y="208" text-anchor="middle" font-weight="bold">Account events</text>
+    <text x="420" y="220" text-anchor="middle" font-size="9">tied to your resources</text>
+
+    <rect x="510" y="185" width="140" height="40" rx="5" fill="rgba(255,255,255,0.18)" stroke="#fff"/>
+    <text x="580" y="208" text-anchor="middle" font-weight="bold">Public events</text>
+    <text x="580" y="220" text-anchor="middle" font-size="9">general service status</text>
+  </g>
+  <text x="500" y="255" text-anchor="middle" font-size="10" fill="#fff" font-style="italic">Open / scheduled / other / event log (90 days)</text>
+
+  <!-- inputs -->
+  <text x="120" y="105" text-anchor="middle" font-size="13" font-weight="bold" fill="#232F3E">Health Event Types</text>
+  <g font-size="11" fill="#232F3E">
+    <rect x="40" y="125" width="180" height="38" rx="5" fill="#FFF3E0" stroke="#FF9900"/>
+    <text x="130" y="148" text-anchor="middle" font-weight="bold">Service issues</text>
+
+    <rect x="40" y="170" width="180" height="38" rx="5" fill="#FFF3E0" stroke="#FF9900"/>
+    <text x="130" y="193" text-anchor="middle" font-weight="bold">Planned maintenance</text>
+
+    <rect x="40" y="215" width="180" height="38" rx="5" fill="#FFF3E0" stroke="#FF9900"/>
+    <text x="130" y="238" text-anchor="middle" font-weight="bold">Account notifications</text>
+
+    <rect x="40" y="260" width="180" height="38" rx="5" fill="#FFF3E0" stroke="#FF9900"/>
+    <text x="130" y="283" text-anchor="middle" font-weight="bold">Security &amp; abuse</text>
+  </g>
+  <line x1="225" y1="195" x2="325" y2="195" stroke="#232F3E" stroke-width="2" marker-end="url(#arrow15)"/>
+
+  <!-- outputs -->
+  <line x1="675" y1="195" x2="775" y2="195" stroke="#232F3E" stroke-width="2" marker-end="url(#arrow15)"/>
+  <text x="880" y="105" text-anchor="middle" font-size="13" font-weight="bold" fill="#232F3E">Consume via</text>
+  <g font-size="11" fill="#232F3E">
+    <rect x="780" y="125" width="180" height="38" rx="5" fill="#E8F5E9" stroke="#2E7D32"/>
+    <text x="870" y="148" text-anchor="middle" font-weight="bold">Health Dashboard UI</text>
+
+    <rect x="780" y="170" width="180" height="38" rx="5" fill="#E8F5E9" stroke="#2E7D32"/>
+    <text x="870" y="193" text-anchor="middle" font-weight="bold">EventBridge (free)</text>
+
+    <rect x="780" y="215" width="180" height="38" rx="5" fill="#E8F5E9" stroke="#2E7D32"/>
+    <text x="870" y="238" text-anchor="middle" font-weight="bold">Health API</text>
+    <text x="870" y="250" text-anchor="middle" font-size="9">Business/Enterprise plans</text>
+
+    <rect x="780" y="260" width="180" height="38" rx="5" fill="#E8F5E9" stroke="#2E7D32"/>
+    <text x="870" y="283" text-anchor="middle" font-weight="bold">AWS User Notifications</text>
+  </g>
+
+  <!-- Use cases -->
+  <rect x="40" y="335" width="920" height="155" rx="10" fill="#fff" stroke="#1E88E5" stroke-width="2"/>
+  <text x="500" y="360" text-anchor="middle" font-size="14" font-weight="bold" fill="#1E88E5">Common use cases</text>
+
+  <g font-size="11" fill="#232F3E">
+    <text x="60" y="390">+  Detect <tspan font-weight="bold">EC2 instances scheduled for retirement</tspan> and migrate before downtime</text>
+    <text x="60" y="410">+  Be alerted when an AWS service is <tspan font-weight="bold">degraded in your Region</tspan> and your resources are affected</text>
+    <text x="60" y="430">+  Forward Health events into <tspan font-weight="bold">Slack / Teams / PagerDuty</tspan> via EventBridge * Lambda/SNS</text>
+    <text x="60" y="450">+  Automate <tspan font-weight="bold">EBS volume / RDS certificate / IAM credential rotation</tspan> ahead of expiry deadlines</text>
+    <text x="60" y="470">+  Organizational view aggregates Health events <tspan font-weight="bold">across all accounts</tspan> in AWS Organizations</text>
+  </g>
+</svg>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" font-family="Arial, sans-serif">
+  <defs>
+    <marker id="arrow9" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#232F3E"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="560" fill="#F7F8FA"/>
+  <text x="500" y="40" text-anchor="middle" font-size="22" font-weight="bold" fill="#232F3E">CloudWatch Alarms - States &amp; Lifecycle</text>
+  <text x="500" y="62" text-anchor="middle" font-size="13" fill="#666" font-style="italic">Period * Evaluation Periods * Datapoints to Alarm * Threshold</text>
+
+  <!-- 3 states -->
+  <g>
+    <circle cx="200" cy="180" r="70" fill="#E8F5E9" stroke="#2E7D32" stroke-width="3"/>
+    <text x="200" y="175" text-anchor="middle" font-size="18" font-weight="bold" fill="#2E7D32">OK</text>
+    <text x="200" y="200" text-anchor="middle" font-size="11" fill="#2E7D32">metric within threshold</text>
+
+    <circle cx="500" cy="180" r="70" fill="#FFF8E1" stroke="#F9A825" stroke-width="3"/>
+    <text x="500" y="170" text-anchor="middle" font-size="14" font-weight="bold" fill="#F57F17">INSUFFICIENT_</text>
+    <text x="500" y="190" text-anchor="middle" font-size="14" font-weight="bold" fill="#F57F17">DATA</text>
+    <text x="500" y="220" text-anchor="middle" font-size="10" fill="#F57F17">not enough data points</text>
+
+    <circle cx="800" cy="180" r="70" fill="#FFEBEE" stroke="#C62828" stroke-width="3"/>
+    <text x="800" y="175" text-anchor="middle" font-size="18" font-weight="bold" fill="#C62828">ALARM</text>
+    <text x="800" y="200" text-anchor="middle" font-size="11" fill="#C62828">threshold breached</text>
+  </g>
+
+  <!-- transitions -->
+  <path d="M 270 165 Q 350 130 430 165" fill="none" stroke="#232F3E" stroke-width="2" marker-end="url(#arrow9)"/>
+  <path d="M 430 200 Q 350 230 270 200" fill="none" stroke="#232F3E" stroke-width="2" marker-end="url(#arrow9)"/>
+  <path d="M 570 165 Q 650 130 730 165" fill="none" stroke="#C62828" stroke-width="2" marker-end="url(#arrow9)"/>
+  <path d="M 730 200 Q 650 230 570 200" fill="none" stroke="#2E7D32" stroke-width="2" marker-end="url(#arrow9)"/>
+
+  <text x="350" y="120" text-anchor="middle" font-size="10" fill="#232F3E">collect data</text>
+  <text x="350" y="248" text-anchor="middle" font-size="10" fill="#232F3E">gap recovered</text>
+  <text x="650" y="120" text-anchor="middle" font-size="10" fill="#C62828">threshold breach</text>
+  <text x="650" y="248" text-anchor="middle" font-size="10" fill="#2E7D32">back within bounds</text>
+
+  <!-- Alarm types -->
+  <rect x="60" y="300" width="280" height="220" rx="10" fill="#fff" stroke="#0073BB" stroke-width="2"/>
+  <text x="200" y="325" text-anchor="middle" font-size="14" font-weight="bold" fill="#0073BB">Metric Alarm</text>
+  <text x="200" y="350" text-anchor="middle" font-size="11" fill="#232F3E">Watches a single metric</text>
+  <text x="200" y="370" text-anchor="middle" font-size="11" fill="#232F3E">or a math expression</text>
+  <text x="200" y="395" text-anchor="middle" font-size="10" fill="#666">Examples:</text>
+  <text x="200" y="415" text-anchor="middle" font-size="11" fill="#232F3E">CPUUtilization &gt; 80%</text>
+  <text x="200" y="435" text-anchor="middle" font-size="11" fill="#232F3E">5XX errors &gt; 1% / 5min</text>
+  <text x="200" y="455" text-anchor="middle" font-size="11" fill="#232F3E">Queue depth &gt; 1000</text>
+  <text x="200" y="485" text-anchor="middle" font-size="10" fill="#666" font-style="italic">Actions: SNS, EC2, ASG, OpsItem</text>
+
+  <rect x="360" y="300" width="280" height="220" rx="10" fill="#fff" stroke="#8C4FFF" stroke-width="2"/>
+  <text x="500" y="325" text-anchor="middle" font-size="14" font-weight="bold" fill="#8C4FFF">Composite Alarm</text>
+  <text x="500" y="350" text-anchor="middle" font-size="11" fill="#232F3E">Combines states of</text>
+  <text x="500" y="370" text-anchor="middle" font-size="11" fill="#232F3E">multiple alarms</text>
+  <text x="500" y="395" text-anchor="middle" font-size="10" fill="#666">Reduces alarm noise:</text>
+  <text x="500" y="415" text-anchor="middle" font-size="11" fill="#232F3E">ALARM(cpu) AND</text>
+  <text x="500" y="435" text-anchor="middle" font-size="11" fill="#232F3E">ALARM(errors)</text>
+  <text x="500" y="455" text-anchor="middle" font-size="11" fill="#232F3E">* page on-call once</text>
+  <text x="500" y="485" text-anchor="middle" font-size="10" fill="#666" font-style="italic">No EC2/ASG actions</text>
+
+  <rect x="660" y="300" width="280" height="220" rx="10" fill="#fff" stroke="#FF9900" stroke-width="2"/>
+  <text x="800" y="325" text-anchor="middle" font-size="14" font-weight="bold" fill="#FF9900">PromQL Alarm</text>
+  <text x="800" y="350" text-anchor="middle" font-size="11" fill="#232F3E">Prometheus Query</text>
+  <text x="800" y="370" text-anchor="middle" font-size="11" fill="#232F3E">Language on OTLP</text>
+  <text x="800" y="395" text-anchor="middle" font-size="10" fill="#666">Tracks per-series:</text>
+  <text x="800" y="415" text-anchor="middle" font-size="11" fill="#232F3E">rate(http_5xx[5m])</text>
+  <text x="800" y="435" text-anchor="middle" font-size="11" fill="#232F3E">&gt; 0.05</text>
+  <text x="800" y="465" text-anchor="middle" font-size="10" fill="#666" font-style="italic">pending / recovery</text>
+  <text x="800" y="480" text-anchor="middle" font-size="10" fill="#666" font-style="italic">durations</text>
+</svg>

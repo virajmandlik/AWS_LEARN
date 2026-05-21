@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 820" font-family="Arial, sans-serif">
+  <rect width="1320" height="820" fill="#F7F8FA"/>
+  <text x="660" y="40" text-anchor="middle" font-size="24" font-weight="bold" fill="#232F3E">VPC &amp; Networking -- Cheat-Sheet</text>
+  <text x="660" y="65" text-anchor="middle" font-size="13" fill="#666" font-style="italic">Pick the right tool by what is being asked</text>
+
+  <!-- Header row -->
+  <g font-size="13" font-weight="bold">
+    <rect x="40" y="90" width="270" height="40" rx="6" fill="#232F3E"/>
+    <text x="175" y="116" text-anchor="middle" fill="#fff">Comparison</text>
+    <rect x="315" y="90" width="490" height="40" rx="6" fill="#232F3E"/>
+    <text x="560" y="116" text-anchor="middle" fill="#fff">Option A</text>
+    <rect x="810" y="90" width="470" height="40" rx="6" fill="#232F3E"/>
+    <text x="1045" y="116" text-anchor="middle" fill="#fff">Option B</text>
+  </g>
+
+  <g font-size="12" fill="#232F3E">
+    <!-- SG vs NACL -->
+    <rect x="40" y="135" width="270" height="80" rx="6" fill="#FCE4EC" stroke="#C7077E"/>
+    <text x="175" y="160" text-anchor="middle" font-weight="bold" fill="#C7077E">Security Group  vs  NACL</text>
+    <text x="175" y="180" text-anchor="middle" font-size="10">"who can talk?"</text>
+    <text x="175" y="198" text-anchor="middle" font-size="10">two layers, both apply</text>
+
+    <rect x="315" y="135" width="490" height="80" rx="6" fill="#fff" stroke="#C7077E"/>
+    <text x="330" y="158" font-weight="bold">Security Group</text>
+    <text x="330" y="178" font-size="11">Instance-level, STATEFUL, ALLOW only</text>
+    <text x="330" y="194" font-size="11">All rules eval'd, supports SG refs + prefix lists</text>
+    <text x="330" y="210" font-size="11">Default OUT = all, IN = none</text>
+
+    <rect x="810" y="135" width="470" height="80" rx="6" fill="#fff" stroke="#C7077E"/>
+    <text x="825" y="158" font-weight="bold">Network ACL</text>
+    <text x="825" y="178" font-size="11">Subnet-level, STATELESS, ALLOW + DENY</text>
+    <text x="825" y="194" font-size="11">Rule numbers 1-32766, lowest first wins</text>
+    <text x="825" y="210" font-size="11">CIDR only, must allow ephemeral return ports</text>
+
+    <!-- NAT GW vs NAT Inst -->
+    <rect x="40" y="225" width="270" height="80" rx="6" fill="#FFF3E0" stroke="#FF9900"/>
+    <text x="175" y="250" text-anchor="middle" font-weight="bold" fill="#D17C00">NAT Gateway  vs  NAT Instance</text>
+    <text x="175" y="270" text-anchor="middle" font-size="10">"how do private hosts</text>
+    <text x="175" y="288" text-anchor="middle" font-size="10">reach the internet?"</text>
+
+    <rect x="315" y="225" width="490" height="80" rx="6" fill="#fff" stroke="#FF9900"/>
+    <text x="330" y="248" font-weight="bold">NAT Gateway (recommended)</text>
+    <text x="330" y="268" font-size="11">Managed, up to 100 Gbps, AZ-bound</text>
+    <text x="330" y="284" font-size="11">Deploy one per AZ for HA  |  Elastic IP attached</text>
+    <text x="330" y="300" font-size="11">No SG (uses subnet NACL)  |  $0.045/hr + $0.045/GB</text>
+
+    <rect x="810" y="225" width="470" height="80" rx="6" fill="#fff" stroke="#FF9900"/>
+    <text x="825" y="248" font-weight="bold">NAT Instance (legacy)</text>
+    <text x="825" y="268" font-size="11">Self-managed EC2, bandwidth = instance size</text>
+    <text x="825" y="284" font-size="11">Supports port forwarding + bastion role</text>
+    <text x="825" y="300" font-size="11">Must disable source/dest check, scripted failover</text>
+
+    <!-- Gateway EP vs Interface EP -->
+    <rect x="40" y="315" width="270" height="80" rx="6" fill="#E8F5E9" stroke="#3F8624"/>
+    <text x="175" y="340" text-anchor="middle" font-weight="bold" fill="#3F8624">Gateway EP  vs  Interface EP</text>
+    <text x="175" y="360" text-anchor="middle" font-size="10">"private access to</text>
+    <text x="175" y="378" text-anchor="middle" font-size="10">AWS services"</text>
+
+    <rect x="315" y="315" width="490" height="80" rx="6" fill="#fff" stroke="#3F8624"/>
+    <text x="330" y="338" font-weight="bold">Gateway Endpoint</text>
+    <text x="330" y="358" font-size="11">S3 + DynamoDB ONLY</text>
+    <text x="330" y="374" font-size="11">Route table entry + AWS prefix list  |  FREE</text>
+    <text x="330" y="390" font-size="11">Only from inside same VPC -- no on-prem</text>
+
+    <rect x="810" y="315" width="470" height="80" rx="6" fill="#fff" stroke="#3F8624"/>
+    <text x="825" y="338" font-weight="bold">Interface Endpoint (PrivateLink)</text>
+    <text x="825" y="358" font-size="11">100+ services + your own  |  ENI + private IP</text>
+    <text x="825" y="374" font-size="11">Works from peered VPCs and on-prem (DX/VPN)</text>
+    <text x="825" y="390" font-size="11">$0.01/hr per AZ + $0.01/GB</text>
+
+    <!-- Peering vs TGW -->
+    <rect x="40" y="405" width="270" height="80" rx="6" fill="#E1F5FE" stroke="#0073BB"/>
+    <text x="175" y="430" text-anchor="middle" font-weight="bold" fill="#0073BB">VPC Peering  vs  Transit Gateway</text>
+    <text x="175" y="450" text-anchor="middle" font-size="10">"connect many VPCs"</text>
+
+    <rect x="315" y="405" width="490" height="80" rx="6" fill="#fff" stroke="#0073BB"/>
+    <text x="330" y="428" font-weight="bold">VPC Peering</text>
+    <text x="330" y="448" font-size="11">Point-to-point, NON-transitive, full mesh = N*(N-1)/2</text>
+    <text x="330" y="464" font-size="11">No bandwidth bottleneck, no extra hop</text>
+    <text x="330" y="480" font-size="11">Cross-account, cross-Region OK  |  no overlapping CIDR</text>
+
+    <rect x="810" y="405" width="470" height="80" rx="6" fill="#fff" stroke="#0073BB"/>
+    <text x="825" y="428" font-weight="bold">Transit Gateway (TGW)</text>
+    <text x="825" y="448" font-size="11">Hub-and-spoke, transitive routing, up to 5000 VPCs</text>
+    <text x="825" y="464" font-size="11">TGW route tables segment traffic  |  multicast + ECMP</text>
+    <text x="825" y="480" font-size="11">Hourly + data-processing fee  |  per-attachment 50 Gbps</text>
+
+    <!-- VPN vs DX -->
+    <rect x="40" y="495" width="270" height="80" rx="6" fill="#F3E5F5" stroke="#8C4FFF"/>
+    <text x="175" y="520" text-anchor="middle" font-weight="bold" fill="#8C4FFF">Site-to-Site VPN  vs  Direct Connect</text>
+    <text x="175" y="540" text-anchor="middle" font-size="10">"connect on-prem to AWS"</text>
+
+    <rect x="315" y="495" width="490" height="80" rx="6" fill="#fff" stroke="#8C4FFF"/>
+    <text x="330" y="518" font-weight="bold">Site-to-Site VPN</text>
+    <text x="330" y="538" font-size="11">IPSec over public internet, encrypted by default</text>
+    <text x="330" y="554" font-size="11">Setup in minutes  |  up to 1.25 Gbps per tunnel</text>
+    <text x="330" y="570" font-size="11">Variable latency, internet-grade  |  good for backup</text>
+
+    <rect x="810" y="495" width="470" height="80" rx="6" fill="#fff" stroke="#8C4FFF"/>
+    <text x="825" y="518" font-weight="bold">Direct Connect (DX)</text>
+    <text x="825" y="538" font-size="11">Private fibre 1 / 10 / 100 / 400 Gbps</text>
+    <text x="825" y="554" font-size="11">Weeks-to-months lead time  |  consistent latency</text>
+    <text x="825" y="570" font-size="11">Not encrypted unless MACsec or VPN over DX layered</text>
+
+    <!-- Client VPN vs S2S VPN -->
+    <rect x="40" y="585" width="270" height="80" rx="6" fill="#FFEBEE" stroke="#C62828"/>
+    <text x="175" y="610" text-anchor="middle" font-weight="bold" fill="#C62828">Client VPN  vs  Site-to-Site VPN</text>
+    <text x="175" y="630" text-anchor="middle" font-size="10">"who is on the other side?"</text>
+
+    <rect x="315" y="585" width="490" height="80" rx="6" fill="#fff" stroke="#C62828"/>
+    <text x="330" y="608" font-weight="bold">AWS Client VPN</text>
+    <text x="330" y="628" font-size="11">Individual remote users  |  OpenVPN protocol</text>
+    <text x="330" y="644" font-size="11">MFA, AD, SAML, mTLS  |  scales elastically</text>
+    <text x="330" y="660" font-size="11">Per-hour subnet association + per-connection-hour</text>
+
+    <rect x="810" y="585" width="470" height="80" rx="6" fill="#fff" stroke="#C62828"/>
+    <text x="825" y="608" font-weight="bold">Site-to-Site VPN</text>
+    <text x="825" y="628" font-size="11">Whole site/branch  |  IPSec to CGW</text>
+    <text x="825" y="644" font-size="11">Per-tunnel pair routes entire networks</text>
+    <text x="825" y="660" font-size="11">Best for office-to-AWS, not road warriors</text>
+
+    <!-- Public IPv4 vs Elastic IP -->
+    <rect x="40" y="675" width="270" height="80" rx="6" fill="#FFFDE7" stroke="#F57F17"/>
+    <text x="175" y="700" text-anchor="middle" font-weight="bold" fill="#F57F17">Public IPv4  vs  Elastic IP  vs  IPv6</text>
+    <text x="175" y="720" text-anchor="middle" font-size="10">"how do clients reach me?"</text>
+
+    <rect x="315" y="675" width="490" height="80" rx="6" fill="#fff" stroke="#F57F17"/>
+    <text x="330" y="698" font-weight="bold">Auto Public IPv4</text>
+    <text x="330" y="718" font-size="11">Assigned when subnet has auto-assign ON</text>
+    <text x="330" y="734" font-size="11">Released on stop  |  billed since Feb 2024</text>
+    <text x="330" y="750" font-size="11">Cannot be reattached -- changes every start</text>
+
+    <rect x="810" y="675" width="470" height="80" rx="6" fill="#fff" stroke="#F57F17"/>
+    <text x="825" y="698" font-weight="bold">Elastic IP  /  IPv6</text>
+    <text x="825" y="718" font-size="11">EIP = static IPv4, account-owned, default quota 5</text>
+    <text x="825" y="734" font-size="11">Free when attached + in-use, else billed hourly</text>
+    <text x="825" y="750" font-size="11">IPv6 in AWS = always globally routable, /64 per subnet</text>
+  </g>
+
+  <!-- Memory hooks -->
+  <rect x="40" y="775" width="1240" height="35" rx="6" fill="#E8F5E9" stroke="#3F8624"/>
+  <text x="660" y="797" text-anchor="middle" font-size="12" font-weight="bold" fill="#3F8624">Memory hook:  SG=guest, NACL=guard, NAT=passport, IGW=front-door, TGW=traffic-circle, PrivateLink=back-alley</text>
+</svg>

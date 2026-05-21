@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 550" font-family="Arial, sans-serif">
+  <defs>
+    <marker id="arrow3" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#232F3E"/>
+    </marker>
+    <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#D13212"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#1D8102"/>
+    </marker>
+  </defs>
+
+  <rect width="900" height="550" fill="#F7F8FA"/>
+  <text x="450" y="35" text-anchor="middle" font-size="22" font-weight="bold" fill="#232F3E">S3 Transfer Acceleration - Fast Long-Distance Uploads</text>
+  <text x="450" y="58" text-anchor="middle" font-size="12" fill="#666">Uses CloudFront Edge Locations to accelerate S3 uploads (50-500% faster)</text>
+
+  <!-- WITHOUT TA -->
+  <text x="200" y="100" text-anchor="middle" font-size="14" font-weight="bold" fill="#D13212">WITHOUT Transfer Acceleration (slow)</text>
+  <rect x="50" y="120" width="120" height="70" rx="8" fill="#fff" stroke="#D13212" stroke-width="2"/>
+  <text x="110" y="148" text-anchor="middle" font-size="12" font-weight="bold">User in Tokyo</text>
+  <text x="110" y="170" text-anchor="middle" font-size="11">Large File (10 GB)</text>
+
+  <path d="M170,155 Q220,100 270,180 Q320,240 360,160" fill="none" stroke="#D13212" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrowRed)"/>
+  <text x="270" y="125" text-anchor="middle" font-size="11" fill="#D13212" font-weight="bold">Public Internet</text>
+  <text x="270" y="250" text-anchor="middle" font-size="10" fill="#D13212" font-style="italic">Many hops, variable latency</text>
+
+  <rect x="360" y="120" width="120" height="70" rx="8" fill="#FF9900" stroke="#232F3E"/>
+  <text x="420" y="148" text-anchor="middle" font-size="12" font-weight="bold" fill="#fff">S3 Bucket</text>
+  <text x="420" y="170" text-anchor="middle" font-size="10" fill="#fff">us-east-1 (Virginia)</text>
+
+  <!-- Divider -->
+  <line x1="50" y1="290" x2="850" y2="290" stroke="#ccc" stroke-dasharray="5,5"/>
+
+  <!-- WITH TA -->
+  <text x="450" y="320" text-anchor="middle" font-size="14" font-weight="bold" fill="#1D8102">WITH Transfer Acceleration (fast)</text>
+
+  <rect x="50" y="345" width="120" height="70" rx="8" fill="#fff" stroke="#1D8102" stroke-width="2"/>
+  <text x="110" y="373" text-anchor="middle" font-size="12" font-weight="bold">User in Tokyo</text>
+  <text x="110" y="395" text-anchor="middle" font-size="11">Large File (10 GB)</text>
+
+  <!-- Edge Location -->
+  <rect x="240" y="345" width="160" height="70" rx="8" fill="#8C4FFF" stroke="#232F3E"/>
+  <text x="320" y="370" text-anchor="middle" font-size="12" font-weight="bold" fill="#fff">CloudFront Edge</text>
+  <text x="320" y="388" text-anchor="middle" font-size="11" fill="#fff">Tokyo (nearby)</text>
+  <text x="320" y="405" text-anchor="middle" font-size="10" fill="#fff">50+ edge locations</text>
+
+  <!-- AWS Backbone -->
+  <rect x="450" y="345" width="160" height="70" rx="8" fill="#232F3E" stroke="#FF9900" stroke-width="2"/>
+  <text x="530" y="370" text-anchor="middle" font-size="12" font-weight="bold" fill="#fff">AWS Private</text>
+  <text x="530" y="388" text-anchor="middle" font-size="12" font-weight="bold" fill="#fff">Backbone Network</text>
+  <text x="530" y="405" text-anchor="middle" font-size="10" fill="#fff">Optimized path</text>
+
+  <!-- S3 -->
+  <rect x="660" y="345" width="160" height="70" rx="8" fill="#FF9900" stroke="#232F3E"/>
+  <text x="740" y="370" text-anchor="middle" font-size="12" font-weight="bold" fill="#fff">S3 Bucket</text>
+  <text x="740" y="388" text-anchor="middle" font-size="10" fill="#fff">us-east-1 (Virginia)</text>
+  <text x="740" y="405" text-anchor="middle" font-size="9" fill="#fff">bucket.s3-accelerate.amazonaws.com</text>
+
+  <line x1="170" y1="380" x2="238" y2="380" stroke="#1D8102" stroke-width="3" marker-end="url(#arrowGreen)"/>
+  <line x1="400" y1="380" x2="448" y2="380" stroke="#1D8102" stroke-width="3" marker-end="url(#arrowGreen)"/>
+  <line x1="610" y1="380" x2="658" y2="380" stroke="#1D8102" stroke-width="3" marker-end="url(#arrowGreen)"/>
+
+  <!-- Key points -->
+  <rect x="50" y="445" width="800" height="90" rx="8" fill="#fff" stroke="#1D8102"/>
+  <text x="450" y="470" text-anchor="middle" font-size="13" font-weight="bold" fill="#1D8102">Key Exam Points</text>
+  <g font-size="11" fill="#232F3E">
+    <text x="65" y="492">" <tspan font-weight="bold">Endpoint:</tspan> bucketname.s3-accelerate.amazonaws.com</text>
+    <text x="65" y="510">" <tspan font-weight="bold">Bucket name:</tspan> Must be DNS-compliant (no periods)</text>
+    <text x="65" y="528">" <tspan font-weight="bold">Pricing:</tspan> Only charged if acceleration actually improves performance</text>
+    <text x="470" y="492">" <tspan font-weight="bold">Speed gain:</tspan> 50-500% faster (depends on distance)</text>
+    <text x="470" y="510">" <tspan font-weight="bold">Activation:</tspan> Takes up to 20 minutes to take effect</text>
+    <text x="470" y="528">" <tspan font-weight="bold">Tool:</tspan> Speed Comparison Tool to verify benefit</text>
+  </g>
+</svg>

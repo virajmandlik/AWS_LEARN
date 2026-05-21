@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" font-family="Arial, sans-serif">
+  <rect width="1000" height="700" fill="#F7F8FA"/>
+  <text x="500" y="35" text-anchor="middle" font-size="22" font-weight="bold" fill="#232F3E">Section 10 Summary - AWS Global Infrastructure Services</text>
+  <text x="500" y="58" text-anchor="middle" font-size="12" fill="#666">Decision Map: Pick the right service for your scenario</text>
+
+  <!-- Central decision -->
+  <circle cx="500" cy="350" r="70" fill="#FF9900" stroke="#232F3E" stroke-width="3"/>
+  <text x="500" y="345" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">Need Global</text>
+  <text x="500" y="362" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">Reach?</text>
+
+  <!-- Route 53 -->
+  <g>
+    <rect x="60" y="100" width="220" height="120" rx="10" fill="#fff" stroke="#FF9900" stroke-width="2"/>
+    <text x="170" y="125" text-anchor="middle" font-size="14" font-weight="bold" fill="#FF9900">Route 53</text>
+    <text x="170" y="150" text-anchor="middle" font-size="11">DNS service</text>
+    <text x="170" y="170" text-anchor="middle" font-size="10">Routing policies</text>
+    <text x="170" y="185" text-anchor="middle" font-size="10">Health checks</text>
+    <text x="170" y="205" text-anchor="middle" font-size="10" font-style="italic" fill="#666">"What IP for my domain?"</text>
+    <line x1="280" y1="160" x2="440" y2="320" stroke="#FF9900" stroke-width="2" stroke-dasharray="4,3"/>
+  </g>
+
+  <!-- CloudFront -->
+  <g>
+    <rect x="380" y="80" width="220" height="120" rx="10" fill="#fff" stroke="#8C4FFF" stroke-width="2"/>
+    <text x="490" y="105" text-anchor="middle" font-size="14" font-weight="bold" fill="#8C4FFF">CloudFront</text>
+    <text x="490" y="130" text-anchor="middle" font-size="11">CDN - Layer 7</text>
+    <text x="490" y="150" text-anchor="middle" font-size="10">Caches HTTP content</text>
+    <text x="490" y="165" text-anchor="middle" font-size="10">450+ edge locations</text>
+    <text x="490" y="185" text-anchor="middle" font-size="10" font-style="italic" fill="#666">"Cache content close to users"</text>
+    <line x1="490" y1="200" x2="490" y2="280" stroke="#8C4FFF" stroke-width="2" stroke-dasharray="4,3"/>
+  </g>
+
+  <!-- S3 Transfer Acceleration -->
+  <g>
+    <rect x="720" y="100" width="220" height="120" rx="10" fill="#fff" stroke="#1D8102" stroke-width="2"/>
+    <text x="830" y="125" text-anchor="middle" font-size="14" font-weight="bold" fill="#1D8102">S3 Transfer Accel</text>
+    <text x="830" y="150" text-anchor="middle" font-size="11">Fast S3 uploads</text>
+    <text x="830" y="170" text-anchor="middle" font-size="10">Uses CF edge network</text>
+    <text x="830" y="185" text-anchor="middle" font-size="10">50-500% faster</text>
+    <text x="830" y="205" text-anchor="middle" font-size="10" font-style="italic" fill="#666">"Upload big files globally"</text>
+    <line x1="720" y1="160" x2="560" y2="320" stroke="#1D8102" stroke-width="2" stroke-dasharray="4,3"/>
+  </g>
+
+  <!-- Global Accelerator -->
+  <g>
+    <rect x="60" y="480" width="220" height="120" rx="10" fill="#fff" stroke="#01A88D" stroke-width="2"/>
+    <text x="170" y="505" text-anchor="middle" font-size="14" font-weight="bold" fill="#01A88D">Global Accelerator</text>
+    <text x="170" y="530" text-anchor="middle" font-size="11">TCP/UDP - Layer 4</text>
+    <text x="170" y="550" text-anchor="middle" font-size="10">2 Static Anycast IPs</text>
+    <text x="170" y="565" text-anchor="middle" font-size="10">No caching - routing</text>
+    <text x="170" y="585" text-anchor="middle" font-size="10" font-style="italic" fill="#666">"Static IPs + AWS backbone"</text>
+    <line x1="280" y1="540" x2="440" y2="400" stroke="#01A88D" stroke-width="2" stroke-dasharray="4,3"/>
+  </g>
+
+  <!-- Outposts -->
+  <g>
+    <rect x="380" y="540" width="220" height="120" rx="10" fill="#fff" stroke="#FF6600" stroke-width="2"/>
+    <text x="490" y="565" text-anchor="middle" font-size="14" font-weight="bold" fill="#FF6600">AWS Outposts</text>
+    <text x="490" y="590" text-anchor="middle" font-size="11">AWS at YOUR site</text>
+    <text x="490" y="608" text-anchor="middle" font-size="10">Rack or Server</text>
+    <text x="490" y="623" text-anchor="middle" font-size="10">Hybrid cloud</text>
+    <text x="490" y="645" text-anchor="middle" font-size="10" font-style="italic" fill="#666">"AWS in your data center"</text>
+    <line x1="490" y1="540" x2="490" y2="420" stroke="#FF6600" stroke-width="2" stroke-dasharray="4,3"/>
+  </g>
+
+  <!-- Wavelength -->
+  <g>
+    <rect x="720" y="480" width="220" height="120" rx="10" fill="#fff" stroke="#D13212" stroke-width="2"/>
+    <text x="830" y="505" text-anchor="middle" font-size="14" font-weight="bold" fill="#D13212">Wavelength</text>
+    <text x="830" y="530" text-anchor="middle" font-size="11">5G carrier edge</text>
+    <text x="830" y="550" text-anchor="middle" font-size="10">Ultra-low latency</text>
+    <text x="830" y="565" text-anchor="middle" font-size="10">Mobile devices</text>
+    <text x="830" y="585" text-anchor="middle" font-size="10" font-style="italic" fill="#666">"Edge of 5G network"</text>
+    <line x1="720" y1="540" x2="560" y2="400" stroke="#D13212" stroke-width="2" stroke-dasharray="4,3"/>
+  </g>
+
+  <!-- Local Zones -->
+  <g>
+    <rect x="60" y="290" width="220" height="120" rx="10" fill="#fff" stroke="#1D8102" stroke-width="2"/>
+    <text x="170" y="315" text-anchor="middle" font-size="14" font-weight="bold" fill="#1D8102">Local Zones</text>
+    <text x="170" y="340" text-anchor="middle" font-size="11">AWS near cities</text>
+    <text x="170" y="360" text-anchor="middle" font-size="10">Single-digit ms</text>
+    <text x="170" y="375" text-anchor="middle" font-size="10">Subset of services</text>
+    <text x="170" y="395" text-anchor="middle" font-size="10" font-style="italic" fill="#666">"AWS metro extension"</text>
+    <line x1="280" y1="350" x2="430" y2="350" stroke="#1D8102" stroke-width="2" stroke-dasharray="4,3"/>
+  </g>
+
+  <!-- Decision keywords on right -->
+  <g>
+    <rect x="720" y="290" width="220" height="120" rx="10" fill="#FFF3E0" stroke="#FF9900" stroke-width="2"/>
+    <text x="830" y="315" text-anchor="middle" font-size="13" font-weight="bold" fill="#232F3E">Exam Decision Keywords</text>
+    <text x="735" y="338" font-size="10" fill="#232F3E"><tspan font-weight="bold">"DNS / domain"</tspan> � Route 53</text>
+    <text x="735" y="355" font-size="10" fill="#232F3E"><tspan font-weight="bold">"Cache content"</tspan> � CloudFront</text>
+    <text x="735" y="372" font-size="10" fill="#232F3E"><tspan font-weight="bold">"Static IPs / UDP"</tspan> � GA</text>
+    <text x="735" y="389" font-size="10" fill="#232F3E"><tspan font-weight="bold">"On-premises"</tspan> � Outposts</text>
+    <text x="735" y="406" font-size="10" fill="#232F3E"><tspan font-weight="bold">"5G mobile"</tspan> � Wavelength</text>
+    <line x1="720" y1="350" x2="570" y2="350" stroke="#FF9900" stroke-width="2" stroke-dasharray="4,3"/>
+  </g>
+</svg>

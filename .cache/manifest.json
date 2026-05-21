@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "entries": {
+    "ec2-concepts": {
+      "awsUrl": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html",
+      "displayName": "EC2 — Concepts and overview",
+      "hash": "06f5000e87c253851cd265ced8cdaed0c9a1ba0c11dcff88f5805db887404dc7",
+      "lastChecked": "2026-04-22T20:34:29.767Z",
+      "lastChanged": "2026-04-22T20:02:39.272Z"
+    },
+    "iam-introduction": {
+      "awsUrl": "https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html",
+      "displayName": "IAM — Introduction",
+      "lastChecked": "2026-04-22T20:34:29.857Z",
+      "lastChanged": "2026-04-22T20:15:18.841Z"
+    },
+    "iam-best-practices": {
+      "awsUrl": "https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html",
+      "displayName": "IAM — Security best practices",
+      "hash": "ef2bfca35489b404682a54644ffcf09977d33d0fef61c9ffff177c3dc6074178",
+      "lastChecked": "2026-04-22T20:34:30.030Z",
+      "lastChanged": "2026-04-22T20:02:39.382Z"
+    },
+    "ec2-instance-types": {
+      "awsUrl": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html",
+      "displayName": "EC2 — Instance types",
+      "hash": "a4c2d33c2f4a6666d0cc991f12545ff82a033f5d55b6d15ee8092c838f8572f1",
+      "lastChecked": "2026-04-22T20:34:30.171Z",
+      "lastChanged": "2026-04-22T20:02:39.473Z"
+    }
+  }
+}

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 720" font-family="Arial, sans-serif">
+  <defs>
+    <marker id="arr17" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#232F3E"/>
+    </marker>
+  </defs>
+  <rect width="1100" height="720" fill="#F7F8FA"/>
+  <text x="550" y="40" text-anchor="middle" font-size="24" font-weight="bold" fill="#232F3E">Amazon VPC -- Reference Architecture (2 AZs)</text>
+  <text x="550" y="65" text-anchor="middle" font-size="13" fill="#666" font-style="italic">VPC = isolated virtual network in one AWS Region; subnets are AZ-scoped</text>
+
+  <!-- Region box -->
+  <rect x="40" y="90" width="1020" height="600" rx="12" fill="#fff" stroke="#232F3E" stroke-width="2"/>
+  <text x="60" y="115" font-size="14" font-weight="bold" fill="#232F3E">AWS Region: us-east-1</text>
+
+  <!-- VPC -->
+  <rect x="70" y="135" width="960" height="535" rx="10" fill="#F0F8FF" stroke="#0073BB" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="90" y="160" font-size="14" font-weight="bold" fill="#0073BB">VPC  10.0.0.0/16  (65,536 IPs)</text>
+
+  <!-- Internet Gateway -->
+  <rect x="470" y="180" width="160" height="50" rx="8" fill="#FF9900" stroke="#232F3E" stroke-width="2"/>
+  <text x="550" y="205" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">Internet Gateway</text>
+  <text x="550" y="222" text-anchor="middle" font-size="10" fill="#fff">(IGW -- 1 per VPC)</text>
+  <text x="550" y="170" text-anchor="middle" font-size="11" fill="#232F3E">^ Internet</text>
+
+  <!-- AZ A -->
+  <rect x="100" y="260" width="430" height="380" rx="8" fill="#fff" stroke="#3F8624" stroke-width="2"/>
+  <text x="115" y="285" font-size="13" font-weight="bold" fill="#3F8624">Availability Zone us-east-1a</text>
+
+  <!-- Public subnet A -->
+  <rect x="120" y="305" width="390" height="120" rx="6" fill="#E8F5E9" stroke="#3F8624"/>
+  <text x="135" y="325" font-size="12" font-weight="bold" fill="#3F8624">Public Subnet  10.0.1.0/24</text>
+  <text x="135" y="342" font-size="10" fill="#666">Route 0.0.0.0/0 -&gt; IGW    auto-assign public IP = ON</text>
+  <rect x="140" y="350" width="120" height="55" rx="5" fill="#fff" stroke="#FF9900"/>
+  <text x="200" y="372" text-anchor="middle" font-size="11" font-weight="bold">NAT Gateway</text>
+  <text x="200" y="389" text-anchor="middle" font-size="10">(Elastic IP)</text>
+  <rect x="280" y="350" width="120" height="55" rx="5" fill="#fff" stroke="#0073BB"/>
+  <text x="340" y="372" text-anchor="middle" font-size="11" font-weight="bold">EC2 Bastion / ALB</text>
+  <text x="340" y="389" text-anchor="middle" font-size="10">public IP</text>
+
+  <!-- Private subnet A -->
+  <rect x="120" y="440" width="390" height="180" rx="6" fill="#FFF3E0" stroke="#D17C00"/>
+  <text x="135" y="460" font-size="12" font-weight="bold" fill="#D17C00">Private Subnet  10.0.2.0/24</text>
+  <text x="135" y="477" font-size="10" fill="#666">Route 0.0.0.0/0 -&gt; NAT GW    no public IP</text>
+  <rect x="140" y="490" width="120" height="55" rx="5" fill="#fff" stroke="#FF9900"/>
+  <text x="200" y="512" text-anchor="middle" font-size="11" font-weight="bold">EC2 App</text>
+  <text x="200" y="529" text-anchor="middle" font-size="10">private only</text>
+  <rect x="280" y="490" width="220" height="55" rx="5" fill="#fff" stroke="#01A88D"/>
+  <text x="390" y="512" text-anchor="middle" font-size="11" font-weight="bold">RDS Primary</text>
+  <text x="390" y="529" text-anchor="middle" font-size="10">DB subnet group</text>
+  <text x="135" y="570" font-size="10" fill="#666">Reserved IPs in /24 = 5 (network, router, DNS, future, broadcast)</text>
+  <text x="135" y="588" font-size="10" fill="#666">Usable hosts in /24 = 256 - 5 = 251</text>
+
+  <!-- AZ B -->
+  <rect x="570" y="260" width="430" height="380" rx="8" fill="#fff" stroke="#3F8624" stroke-width="2"/>
+  <text x="585" y="285" font-size="13" font-weight="bold" fill="#3F8624">Availability Zone us-east-1b</text>
+
+  <rect x="590" y="305" width="390" height="120" rx="6" fill="#E8F5E9" stroke="#3F8624"/>
+  <text x="605" y="325" font-size="12" font-weight="bold" fill="#3F8624">Public Subnet  10.0.3.0/24</text>
+  <text x="605" y="342" font-size="10" fill="#666">Route 0.0.0.0/0 -&gt; IGW</text>
+  <rect x="610" y="350" width="120" height="55" rx="5" fill="#fff" stroke="#FF9900"/>
+  <text x="670" y="372" text-anchor="middle" font-size="11" font-weight="bold">NAT Gateway</text>
+  <text x="670" y="389" text-anchor="middle" font-size="10">(per-AZ for HA)</text>
+  <rect x="750" y="350" width="120" height="55" rx="5" fill="#fff" stroke="#0073BB"/>
+  <text x="810" y="372" text-anchor="middle" font-size="11" font-weight="bold">ALB / Bastion</text>
+  <text x="810" y="389" text-anchor="middle" font-size="10">public IP</text>
+
+  <rect x="590" y="440" width="390" height="180" rx="6" fill="#FFF3E0" stroke="#D17C00"/>
+  <text x="605" y="460" font-size="12" font-weight="bold" fill="#D17C00">Private Subnet  10.0.4.0/24</text>
+  <text x="605" y="477" font-size="10" fill="#666">Route 0.0.0.0/0 -&gt; NAT GW (in 1b)</text>
+  <rect x="610" y="490" width="120" height="55" rx="5" fill="#fff" stroke="#FF9900"/>
+  <text x="670" y="512" text-anchor="middle" font-size="11" font-weight="bold">EC2 App</text>
+  <text x="670" y="529" text-anchor="middle" font-size="10">ASG member</text>
+  <rect x="750" y="490" width="220" height="55" rx="5" fill="#fff" stroke="#01A88D"/>
+  <text x="860" y="512" text-anchor="middle" font-size="11" font-weight="bold">RDS Standby</text>
+  <text x="860" y="529" text-anchor="middle" font-size="10">Multi-AZ replica</text>
+  <text x="605" y="570" font-size="10" fill="#666">Best practice: subnets only span ONE AZ; replicate across AZs for HA.</text>
+
+  <!-- Arrows -->
+  <line x1="200" y1="350" x2="490" y2="230" stroke="#232F3E" stroke-width="1.5" marker-end="url(#arr17)"/>
+  <line x1="670" y1="350" x2="610" y2="230" stroke="#232F3E" stroke-width="1.5" marker-end="url(#arr17)"/>
+  <line x1="200" y1="490" x2="200" y2="410" stroke="#0073BB" stroke-width="1.5" marker-end="url(#arr17)"/>
+  <line x1="670" y1="490" x2="670" y2="410" stroke="#0073BB" stroke-width="1.5" marker-end="url(#arr17)"/>
+
+  <text x="550" y="705" text-anchor="middle" font-size="11" fill="#666" font-style="italic">Default VPC: one /20 public subnet per AZ, IGW attached, internet-ready out of the box.</text>
+</svg>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 700" font-family="Arial, sans-serif">
+  <rect width="1100" height="700" fill="#F7F8FA"/>
+  <text x="550" y="40" text-anchor="middle" font-size="24" font-weight="bold" fill="#232F3E">AWS IP Addressing -- IPv4 / IPv6 / Elastic IP</text>
+  <text x="550" y="65" text-anchor="middle" font-size="13" fill="#666" font-style="italic">Private vs Public, CIDR sizing, reserved IPs per subnet</text>
+
+  <!-- Private ranges -->
+  <rect x="40" y="95" width="500" height="190" rx="10" fill="#fff" stroke="#232F3E" stroke-width="2"/>
+  <text x="290" y="120" text-anchor="middle" font-size="15" font-weight="bold" fill="#232F3E">Private IPv4 Ranges (RFC 1918)</text>
+  <g font-size="12" fill="#232F3E">
+    <rect x="60" y="135" width="140" height="40" rx="5" fill="#E8F5E9" stroke="#3F8624"/>
+    <text x="130" y="160" text-anchor="middle" font-weight="bold">10.0.0.0/8</text>
+    <text x="220" y="160" font-size="11">~16.7M hosts -- large enterprise</text>
+
+    <rect x="60" y="185" width="140" height="40" rx="5" fill="#E8F5E9" stroke="#3F8624"/>
+    <text x="130" y="210" text-anchor="middle" font-weight="bold">172.16.0.0/12</text>
+    <text x="220" y="210" font-size="11">~1M hosts (default VPC = 172.31.0.0/16)</text>
+
+    <rect x="60" y="235" width="140" height="40" rx="5" fill="#E8F5E9" stroke="#3F8624"/>
+    <text x="130" y="260" text-anchor="middle" font-weight="bold">192.168.0.0/16</text>
+    <text x="220" y="260" font-size="11">~65K hosts -- home / small lab</text>
+  </g>
+
+  <!-- Public -->
+  <rect x="560" y="95" width="500" height="190" rx="10" fill="#fff" stroke="#232F3E" stroke-width="2"/>
+  <text x="810" y="120" text-anchor="middle" font-size="15" font-weight="bold" fill="#232F3E">Public IPv4 -- assigned by AWS</text>
+  <g font-size="12" fill="#232F3E">
+    <rect x="580" y="135" width="200" height="40" rx="5" fill="#FFF3E0" stroke="#FF9900"/>
+    <text x="680" y="160" text-anchor="middle" font-weight="bold">Auto-assigned public IP</text>
+    <text x="790" y="160" font-size="11">changes on stop/start</text>
+
+    <rect x="580" y="185" width="200" height="40" rx="5" fill="#FFF3E0" stroke="#FF9900"/>
+    <text x="680" y="210" text-anchor="middle" font-weight="bold">Elastic IP (EIP)</text>
+    <text x="790" y="210" font-size="11">static, account-owned, billed when idle</text>
+
+    <rect x="580" y="235" width="200" height="40" rx="5" fill="#FFF3E0" stroke="#FF9900"/>
+    <text x="680" y="260" text-anchor="middle" font-weight="bold">BYOIP</text>
+    <text x="790" y="260" font-size="11">bring your own /24 + ROA cert</text>
+  </g>
+
+  <!-- VPC CIDR sizing -->
+  <rect x="40" y="305" width="1020" height="180" rx="10" fill="#fff" stroke="#232F3E" stroke-width="2"/>
+  <text x="550" y="330" text-anchor="middle" font-size="15" font-weight="bold" fill="#232F3E">VPC CIDR Sizing  (allowed: /16 to /28)</text>
+  <g font-size="12" fill="#232F3E">
+    <rect x="60" y="350" width="120" height="40" rx="5" fill="#E1F5FE" stroke="#0073BB"/>
+    <text x="120" y="375" text-anchor="middle" font-weight="bold">/16</text>
+    <text x="200" y="375" font-size="11">65,536 IPs -- max VPC size</text>
+
+    <rect x="350" y="350" width="120" height="40" rx="5" fill="#E1F5FE" stroke="#0073BB"/>
+    <text x="410" y="375" text-anchor="middle" font-weight="bold">/24</text>
+    <text x="490" y="375" font-size="11">256 IPs -- typical subnet</text>
+
+    <rect x="640" y="350" width="120" height="40" rx="5" fill="#E1F5FE" stroke="#0073BB"/>
+    <text x="700" y="375" text-anchor="middle" font-weight="bold">/28</text>
+    <text x="780" y="375" font-size="11">16 IPs -- min subnet size</text>
+
+    <rect x="60" y="405" width="700" height="60" rx="5" fill="#FCE4EC" stroke="#C7077E"/>
+    <text x="80" y="425" font-weight="bold" fill="#C7077E">5 IP addresses reserved in every subnet:</text>
+    <text x="80" y="442" font-size="11">.0 network | .1 VPC router | .2 DNS (Amazon) | .3 future | .255 broadcast</text>
+    <text x="80" y="458" font-size="11">Example: /24 has 256 - 5 = 251 usable IPs.  /28 has 16 - 5 = 11 usable.</text>
+
+    <rect x="790" y="405" width="260" height="60" rx="5" fill="#FFF3E0" stroke="#FF9900"/>
+    <text x="920" y="427" text-anchor="middle" font-size="11" font-weight="bold">IPv6 in VPC</text>
+    <text x="920" y="445" text-anchor="middle" font-size="11">VPC /56 -- subnet /64 (default)</text>
+    <text x="920" y="461" text-anchor="middle" font-size="11">All IPv6 in AWS are public/routable</text>
+  </g>
+
+  <!-- Elastic IP / EIP facts -->
+  <rect x="40" y="505" width="500" height="170" rx="10" fill="#fff" stroke="#232F3E" stroke-width="2"/>
+  <text x="290" y="530" text-anchor="middle" font-size="15" font-weight="bold" fill="#232F3E">Elastic IP -- Facts &amp; Gotchas</text>
+  <text x="60" y="555" font-size="12">+ Static public IPv4 owned by your account</text>
+  <text x="60" y="575" font-size="12">+ Default quota = 5 EIPs per Region (soft limit)</text>
+  <text x="60" y="595" font-size="12">+ Free when ATTACHED to a running instance with one EIP</text>
+  <text x="60" y="615" font-size="12">+ Charged when idle, unassociated, or as a second EIP</text>
+  <text x="60" y="635" font-size="12">+ Public IPv4 charges apply to ALL public IPv4 since Feb 2024</text>
+  <text x="60" y="655" font-size="12">+ Better alternatives: ALB DNS, Route 53 alias, Global Accelerator</text>
+
+  <!-- BYOIP / IPAM -->
+  <rect x="560" y="505" width="500" height="170" rx="10" fill="#fff" stroke="#232F3E" stroke-width="2"/>
+  <text x="810" y="530" text-anchor="middle" font-size="15" font-weight="bold" fill="#232F3E">BYOIP + IPAM (advanced)</text>
+  <text x="580" y="555" font-size="12">+ BYOIP: bring your own public IPv4 /24 (or /48 IPv6)</text>
+  <text x="580" y="575" font-size="12">+ ROA (Route Origin Authorization) proves you own the prefix</text>
+  <text x="580" y="595" font-size="12">+ IP Address Manager (IPAM) plans, tracks, audits CIDRs</text>
+  <text x="580" y="615" font-size="12">+ Public IPv4 Insights = which addresses are in use, where</text>
+  <text x="580" y="635" font-size="12">+ Free Tier (12 mo): 750 hours public IPv4</text>
+  <text x="580" y="655" font-size="12">+ IPv6 has NO public/private split -- all globally routable</text>
+</svg>

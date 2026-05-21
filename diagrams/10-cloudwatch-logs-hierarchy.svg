@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" font-family="Arial, sans-serif">
+  <defs>
+    <marker id="arrow10" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#232F3E"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="600" fill="#F7F8FA"/>
+  <text x="500" y="40" text-anchor="middle" font-size="22" font-weight="bold" fill="#232F3E">Amazon CloudWatch Logs - Hierarchy</text>
+  <text x="500" y="63" text-anchor="middle" font-size="13" fill="#666" font-style="italic">Log Events * Log Streams * Log Groups (shared retention &amp; access)</text>
+
+  <!-- Log Group -->
+  <rect x="120" y="100" width="760" height="380" rx="12" fill="#fff" stroke="#FF4F8B" stroke-width="3"/>
+  <text x="500" y="128" text-anchor="middle" font-size="16" font-weight="bold" fill="#C7077E">Log Group: /aws/lambda/order-service</text>
+  <text x="500" y="148" text-anchor="middle" font-size="11" fill="#666">Retention * Subscription filters * Metric filters * KMS * Deletion protection</text>
+
+  <!-- Log Streams -->
+  <g>
+    <rect x="150" y="175" width="220" height="270" rx="8" fill="#FFF3F8" stroke="#FF4F8B"/>
+    <text x="260" y="200" text-anchor="middle" font-size="13" font-weight="bold" fill="#C7077E">Log Stream A</text>
+    <text x="260" y="216" text-anchor="middle" font-size="10" fill="#666">2026/05/14/[$LATEST]abc</text>
+
+    <rect x="165" y="230" width="190" height="32" rx="4" fill="#fff" stroke="#FF9900"/>
+    <text x="175" y="250" font-size="10" fill="#232F3E">00:01:02Z Cold start init</text>
+    <rect x="165" y="270" width="190" height="32" rx="4" fill="#fff" stroke="#FF9900"/>
+    <text x="175" y="290" font-size="10" fill="#232F3E">00:01:03Z START req-id 7f</text>
+    <rect x="165" y="310" width="190" height="32" rx="4" fill="#fff" stroke="#FF9900"/>
+    <text x="175" y="330" font-size="10" fill="#232F3E">00:01:03Z Order placed: 4321</text>
+    <rect x="165" y="350" width="190" height="32" rx="4" fill="#fff" stroke="#C62828"/>
+    <text x="175" y="370" font-size="10" fill="#C62828">00:01:04Z ERROR Stripe 5xx</text>
+    <rect x="165" y="390" width="190" height="32" rx="4" fill="#fff" stroke="#FF9900"/>
+    <text x="175" y="410" font-size="10" fill="#232F3E">00:01:04Z END req-id 7f</text>
+  </g>
+
+  <g>
+    <rect x="390" y="175" width="220" height="270" rx="8" fill="#FFF3F8" stroke="#FF4F8B"/>
+    <text x="500" y="200" text-anchor="middle" font-size="13" font-weight="bold" fill="#C7077E">Log Stream B</text>
+    <text x="500" y="216" text-anchor="middle" font-size="10" fill="#666">2026/05/14/[$LATEST]def</text>
+
+    <rect x="405" y="230" width="190" height="32" rx="4" fill="#fff" stroke="#FF9900"/>
+    <text x="415" y="250" font-size="10" fill="#232F3E">00:02:11Z START req-id 9c</text>
+    <rect x="405" y="270" width="190" height="32" rx="4" fill="#fff" stroke="#FF9900"/>
+    <text x="415" y="290" font-size="10" fill="#232F3E">00:02:11Z Validate cart</text>
+    <rect x="405" y="310" width="190" height="32" rx="4" fill="#fff" stroke="#FF9900"/>
+    <text x="415" y="330" font-size="10" fill="#232F3E">00:02:12Z Order placed: 4322</text>
+    <rect x="405" y="350" width="190" height="32" rx="4" fill="#fff" stroke="#FF9900"/>
+    <text x="415" y="370" font-size="10" fill="#232F3E">00:02:12Z END req-id 9c</text>
+    <text x="500" y="410" text-anchor="middle" font-size="10" fill="#666" font-style="italic">one stream per source</text>
+  </g>
+
+  <g>
+    <rect x="630" y="175" width="220" height="270" rx="8" fill="#FFF3F8" stroke="#FF4F8B"/>
+    <text x="740" y="200" text-anchor="middle" font-size="13" font-weight="bold" fill="#C7077E">Log Stream C</text>
+    <text x="740" y="216" text-anchor="middle" font-size="10" fill="#666">2026/05/14/[$LATEST]ghi</text>
+
+    <rect x="645" y="230" width="190" height="32" rx="4" fill="#fff" stroke="#FF9900"/>
+    <text x="655" y="250" font-size="10" fill="#232F3E">00:03:55Z START req-id ee</text>
+    <rect x="645" y="270" width="190" height="32" rx="4" fill="#fff" stroke="#C62828"/>
+    <text x="655" y="290" font-size="10" fill="#C62828">00:03:55Z ERROR timeout</text>
+    <rect x="645" y="310" width="190" height="32" rx="4" fill="#fff" stroke="#FF9900"/>
+    <text x="655" y="330" font-size="10" fill="#232F3E">00:03:55Z END req-id ee</text>
+    <rect x="645" y="350" width="190" height="32" rx="4" fill="#fff" stroke="#FF9900"/>
+    <text x="655" y="370" font-size="10" fill="#232F3E">00:04:01Z START req-id ff</text>
+  </g>
+
+  <!-- Downstream -->
+  <line x1="500" y1="485" x2="500" y2="510" stroke="#232F3E" stroke-width="2" marker-end="url(#arrow10)"/>
+
+  <g font-size="11" fill="#232F3E">
+    <rect x="120" y="515" width="170" height="55" rx="5" fill="#E8F4FD" stroke="#0073BB"/>
+    <text x="205" y="538" text-anchor="middle" font-weight="bold">Metric Filters</text>
+    <text x="205" y="555" text-anchor="middle" font-size="10">ERROR count * metric</text>
+
+    <rect x="305" y="515" width="170" height="55" rx="5" fill="#E8F4FD" stroke="#0073BB"/>
+    <text x="390" y="538" text-anchor="middle" font-weight="bold">Logs Insights</text>
+    <text x="390" y="555" text-anchor="middle" font-size="10">SQL-like queries</text>
+
+    <rect x="490" y="515" width="170" height="55" rx="5" fill="#E8F4FD" stroke="#0073BB"/>
+    <text x="575" y="538" text-anchor="middle" font-weight="bold">Subscriptions</text>
+    <text x="575" y="555" text-anchor="middle" font-size="10">Kinesis / Firehose / *</text>
+
+    <rect x="675" y="515" width="170" height="55" rx="5" fill="#E8F4FD" stroke="#0073BB"/>
+    <text x="760" y="538" text-anchor="middle" font-weight="bold">Export to S3</text>
+    <text x="760" y="555" text-anchor="middle" font-size="10">Long-term archive</text>
+  </g>
+
+  <text x="500" y="592" text-anchor="middle" font-size="10" fill="#666" font-style="italic">Standard log class * Infrequent Access (lower-cost) * retention from 1 day to 10 years (Never expire)</text>
+</svg>

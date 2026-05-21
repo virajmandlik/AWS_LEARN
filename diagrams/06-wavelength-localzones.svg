@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 650" font-family="Arial, sans-serif">
+  <defs>
+    <marker id="arrW" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#232F3E"/>
+    </marker>
+    <linearGradient id="wlGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D13212"/>
+      <stop offset="100%" stop-color="#8B1A0E"/>
+    </linearGradient>
+    <linearGradient id="lzGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1D8102"/>
+      <stop offset="100%" stop-color="#0F4D01"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="900" height="650" fill="#F7F8FA"/>
+  <text x="450" y="30" text-anchor="middle" font-size="22" font-weight="bold" fill="#232F3E">AWS Wavelength vs Local Zones - Edge Computing</text>
+
+  <!-- WAVELENGTH SECTION -->
+  <rect x="20" y="55" width="860" height="270" rx="10" fill="#fff" stroke="#D13212" stroke-width="2"/>
+  <text x="450" y="85" text-anchor="middle" font-size="16" font-weight="bold" fill="#D13212">AWS Wavelength - 5G Carrier Edge (Ultra-Low Latency for Mobile)</text>
+
+  <!-- 5G Mobile -->
+  <g transform="translate(50,110)">
+    <rect width="100" height="60" rx="8" fill="#fff" stroke="#D13212" stroke-width="2"/>
+    <text x="50" y="25" text-anchor="middle" font-size="11" font-weight="bold">=� Mobile</text>
+    <text x="50" y="40" text-anchor="middle" font-size="10">5G Device</text>
+    <text x="50" y="52" text-anchor="middle" font-size="9" fill="#666">AR/VR/Gaming</text>
+  </g>
+
+  <!-- 5G Network -->
+  <g transform="translate(180,110)">
+    <rect width="120" height="60" rx="8" fill="#FFE0DC" stroke="#D13212" stroke-width="2"/>
+    <text x="60" y="25" text-anchor="middle" font-size="11" font-weight="bold">=� 5G Network</text>
+    <text x="60" y="40" text-anchor="middle" font-size="10">Carrier RAN</text>
+    <text x="60" y="52" text-anchor="middle" font-size="9" fill="#666">Verizon/Vodafone/KDDI</text>
+  </g>
+
+  <!-- Wavelength Zone -->
+  <g transform="translate(330,90)">
+    <rect width="200" height="100" rx="8" fill="url(#wlGrad)" stroke="#232F3E" stroke-width="2"/>
+    <text x="100" y="25" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">Wavelength Zone</text>
+    <text x="100" y="45" text-anchor="middle" font-size="10" fill="#fff">Inside Carrier DC</text>
+    <text x="100" y="60" text-anchor="middle" font-size="10" fill="#fff">EC2 / EBS / VPC subnet</text>
+    <text x="100" y="78" text-anchor="middle" font-size="10" fill="#fff">Carrier Gateway</text>
+    <text x="100" y="93" text-anchor="middle" font-size="9" fill="#FFE0DC" font-style="italic">Traffic never leaves carrier</text>
+  </g>
+
+  <!-- Parent Region (WL) -->
+  <g transform="translate(560,110)">
+    <rect width="160" height="60" rx="8" fill="#232F3E" stroke="#FF9900" stroke-width="2"/>
+    <text x="80" y="25" text-anchor="middle" font-size="11" font-weight="bold" fill="#FF9900">Parent Region</text>
+    <text x="80" y="40" text-anchor="middle" font-size="9" fill="#fff">Full AWS services</text>
+    <text x="80" y="52" text-anchor="middle" font-size="9" fill="#fff">Management plane</text>
+  </g>
+
+  <line x1="150" y1="140" x2="178" y2="140" stroke="#D13212" stroke-width="2" marker-end="url(#arrW)"/>
+  <line x1="300" y1="140" x2="328" y2="140" stroke="#D13212" stroke-width="2" marker-end="url(#arrW)"/>
+  <line x1="530" y1="140" x2="558" y2="140" stroke="#D13212" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#arrW)"/>
+
+  <!-- WL Use cases -->
+  <rect x="50" y="200" width="800" height="110" rx="5" fill="#FFF3E0" stroke="#D13212"/>
+  <text x="450" y="220" text-anchor="middle" font-size="12" font-weight="bold" fill="#D13212">Wavelength Use Cases &amp; Key Facts</text>
+  <g font-size="10" fill="#232F3E">
+    <text x="65" y="240"><tspan font-weight="bold"><� Gaming:</tspan> Real-time multiplayer (sub-10ms latency)</text>
+    <text x="65" y="258"><tspan font-weight="bold">=� Connected Cars:</tspan> Autonomous vehicles, V2X comms</text>
+    <text x="65" y="276"><tspan font-weight="bold"><� Smart Factory:</tspan> IoT, ML inference at edge</text>
+    <text x="65" y="294"><tspan font-weight="bold">=� Live Media:</tspan> Streaming, AR/VR experiences</text>
+    <text x="475" y="240"><tspan font-weight="bold">� WLZ to WLZ:</tspan> Cannot communicate directly - need Transit Gateway</text>
+    <text x="475" y="258"><tspan font-weight="bold">= Partners:</tspan> Verizon (US), Vodafone (EU), KDDI (JP), SKT (KR), Bell (CA)</text>
+    <text x="475" y="276"><tspan font-weight="bold">=� Pricing:</tspan> Pay only for AWS resources deployed (no WL tax)</text>
+    <text x="475" y="294"><tspan font-weight="bold"><� Compliance:</tspan> Online betting / regulated markets (data residency)</text>
+  </g>
+
+  <!-- LOCAL ZONES SECTION -->
+  <rect x="20" y="345" width="860" height="290" rx="10" fill="#fff" stroke="#1D8102" stroke-width="2"/>
+  <text x="450" y="375" text-anchor="middle" font-size="16" font-weight="bold" fill="#1D8102">AWS Local Zones - Metro-Adjacent (Single-Digit ms to City Users)</text>
+
+  <!-- City Users -->
+  <g transform="translate(50,400)">
+    <circle cx="40" cy="30" r="30" fill="#fff" stroke="#1D8102" stroke-width="2"/>
+    <text x="40" y="28" text-anchor="middle" font-size="10" font-weight="bold">Users in</text>
+    <text x="40" y="42" text-anchor="middle" font-size="10" font-weight="bold">Los Angeles</text>
+  </g>
+
+  <!-- Local Zone -->
+  <g transform="translate(170,395)">
+    <rect width="220" height="100" rx="8" fill="url(#lzGrad)" stroke="#232F3E" stroke-width="2"/>
+    <text x="110" y="25" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">Local Zone (LA)</text>
+    <text x="110" y="42" text-anchor="middle" font-size="10" fill="#fff">AWS-owned facility</text>
+    <text x="110" y="57" text-anchor="middle" font-size="10" fill="#fff">EC2 / EBS / FSx / RDS</text>
+    <text x="110" y="72" text-anchor="middle" font-size="10" fill="#fff">ElastiCache / ELB</text>
+    <text x="110" y="90" text-anchor="middle" font-size="9" fill="#D4EDDA" font-style="italic">VPC subnet extension</text>
+  </g>
+
+  <!-- Parent Region (LZ) -->
+  <g transform="translate(420,395)">
+    <rect width="180" height="100" rx="8" fill="#232F3E" stroke="#FF9900" stroke-width="2"/>
+    <text x="90" y="25" text-anchor="middle" font-size="13" font-weight="bold" fill="#FF9900">Parent Region</text>
+    <text x="90" y="45" text-anchor="middle" font-size="10" fill="#fff">us-west-2 (Oregon)</text>
+    <text x="90" y="62" text-anchor="middle" font-size="10" fill="#fff">High-bandwidth</text>
+    <text x="90" y="77" text-anchor="middle" font-size="10" fill="#fff">private link</text>
+    <text x="90" y="92" text-anchor="middle" font-size="9" fill="#FF9900">Full AWS catalog</text>
+  </g>
+
+  <line x1="120" y1="430" x2="168" y2="430" stroke="#1D8102" stroke-width="2" marker-end="url(#arrW)"/>
+  <text x="144" y="420" font-size="9" fill="#1D8102" font-weight="bold">&lt;10ms</text>
+  <line x1="390" y1="445" x2="418" y2="445" stroke="#1D8102" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#arrW)"/>
+
+  <!-- LZ vs Outposts vs WL -->
+  <rect x="630" y="395" width="220" height="100" rx="8" fill="#fff" stroke="#1D8102"/>
+  <text x="740" y="415" text-anchor="middle" font-size="11" font-weight="bold" fill="#1D8102">Quick Distinctions</text>
+  <text x="640" y="435" font-size="9" fill="#232F3E"><tspan font-weight="bold">Local Zone:</tspan> AWS facility near city</text>
+  <text x="640" y="450" font-size="9" fill="#232F3E"><tspan font-weight="bold">Wavelength:</tspan> Inside 5G carrier</text>
+  <text x="640" y="465" font-size="9" fill="#232F3E"><tspan font-weight="bold">Outposts:</tspan> YOUR data center</text>
+  <text x="640" y="480" font-size="9" fill="#232F3E"><tspan font-weight="bold">AZ:</tspan> Inside AWS Region</text>
+
+  <!-- LZ Use Cases -->
+  <rect x="50" y="510" width="800" height="115" rx="5" fill="#E8F5E9" stroke="#1D8102"/>
+  <text x="450" y="530" text-anchor="middle" font-size="12" font-weight="bold" fill="#1D8102">Local Zones Use Cases &amp; Key Facts</text>
+  <g font-size="10" fill="#232F3E">
+    <text x="65" y="550"><tspan font-weight="bold"><� Media &amp; Entertainment:</tspan> Real-time video editing</text>
+    <text x="65" y="568"><tspan font-weight="bold">> ML Inference:</tspan> Latency-sensitive predictions</text>
+    <text x="65" y="586"><tspan font-weight="bold"><� Gaming:</tspan> Multiplayer servers near players</text>
+    <text x="65" y="604"><tspan font-weight="bold">=� Data Residency:</tspan> Metro-level compliance</text>
+    <text x="475" y="550"><tspan font-weight="bold">� Must opt-in:</tspan> Not enabled by default</text>
+    <text x="475" y="568"><tspan font-weight="bold">=� Subset of services:</tspan> NOT full Region catalog</text>
+    <text x="475" y="586"><tspan font-weight="bold"><� AWS-managed:</tspan> Contrast with Outposts</text>
+    <text x="475" y="604"><tspan font-weight="bold">= Connectivity:</tspan> Subnet in your VPC</text>
+  </g>
+</svg>

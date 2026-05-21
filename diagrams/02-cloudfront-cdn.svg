@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 550" font-family="Arial, sans-serif">
+  <defs>
+    <marker id="arrow2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#232F3E"/>
+    </marker>
+    <linearGradient id="cfGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8C4FFF"/>
+      <stop offset="100%" stop-color="#5B2F9F"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="900" height="550" fill="#F7F8FA"/>
+  <text x="450" y="35" text-anchor="middle" font-size="22" font-weight="bold" fill="#232F3E">Amazon CloudFront - CDN Architecture</text>
+  <text x="450" y="58" text-anchor="middle" font-size="12" fill="#666">450+ Points of Presence | 90+ Cities | 48+ Countries</text>
+
+  <!-- Users globally -->
+  <g>
+    <circle cx="80" cy="150" r="35" fill="#fff" stroke="#232F3E" stroke-width="2"/>
+    <text x="80" y="155" text-anchor="middle" font-size="11" font-weight="bold">User US</text>
+
+    <circle cx="80" cy="270" r="35" fill="#fff" stroke="#232F3E" stroke-width="2"/>
+    <text x="80" y="275" text-anchor="middle" font-size="11" font-weight="bold">User EU</text>
+
+    <circle cx="80" cy="390" r="35" fill="#fff" stroke="#232F3E" stroke-width="2"/>
+    <text x="80" y="395" text-anchor="middle" font-size="11" font-weight="bold">User APAC</text>
+  </g>
+
+  <!-- Edge Locations -->
+  <g>
+    <rect x="220" y="120" width="160" height="65" rx="8" fill="url(#cfGrad)" stroke="#232F3E"/>
+    <text x="300" y="145" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">Edge Location</text>
+    <text x="300" y="165" text-anchor="middle" font-size="11" fill="#fff">N. Virginia</text>
+    <text x="300" y="180" text-anchor="middle" font-size="10" fill="#fff">[Cache HIT/MISS]</text>
+
+    <rect x="220" y="240" width="160" height="65" rx="8" fill="url(#cfGrad)" stroke="#232F3E"/>
+    <text x="300" y="265" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">Edge Location</text>
+    <text x="300" y="285" text-anchor="middle" font-size="11" fill="#fff">Frankfurt</text>
+    <text x="300" y="300" text-anchor="middle" font-size="10" fill="#fff">[Cache HIT/MISS]</text>
+
+    <rect x="220" y="360" width="160" height="65" rx="8" fill="url(#cfGrad)" stroke="#232F3E"/>
+    <text x="300" y="385" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">Edge Location</text>
+    <text x="300" y="405" text-anchor="middle" font-size="11" fill="#fff">Singapore</text>
+    <text x="300" y="420" text-anchor="middle" font-size="10" fill="#fff">[Cache HIT/MISS]</text>
+  </g>
+
+  <!-- Regional Edge Cache -->
+  <rect x="430" y="200" width="180" height="160" rx="10" fill="#E8DCFE" stroke="#8C4FFF" stroke-width="2"/>
+  <text x="520" y="230" text-anchor="middle" font-size="13" font-weight="bold" fill="#5B2F9F">Regional Edge</text>
+  <text x="520" y="248" text-anchor="middle" font-size="13" font-weight="bold" fill="#5B2F9F">Cache (REC)</text>
+  <text x="520" y="280" text-anchor="middle" font-size="11" fill="#5B2F9F">Mid-tier caching</text>
+  <text x="520" y="300" text-anchor="middle" font-size="11" fill="#5B2F9F">Larger storage</text>
+  <text x="520" y="320" text-anchor="middle" font-size="11" fill="#5B2F9F">Less popular content</text>
+  <text x="520" y="340" text-anchor="middle" font-size="11" fill="#5B2F9F">Reduces origin load</text>
+
+  <!-- Origin -->
+  <rect x="680" y="200" width="180" height="160" rx="10" fill="#FF9900" stroke="#232F3E" stroke-width="2"/>
+  <text x="770" y="230" text-anchor="middle" font-size="14" font-weight="bold" fill="#fff">ORIGIN</text>
+  <text x="770" y="260" text-anchor="middle" font-size="11" fill="#fff">S3 Bucket</text>
+  <text x="770" y="280" text-anchor="middle" font-size="11" fill="#fff">ALB / NLB</text>
+  <text x="770" y="300" text-anchor="middle" font-size="11" fill="#fff">EC2 / HTTP Server</text>
+  <text x="770" y="320" text-anchor="middle" font-size="11" fill="#fff">API Gateway</text>
+  <text x="770" y="345" text-anchor="middle" font-size="10" fill="#fff" font-style="italic">Single source of truth</text>
+
+  <!-- Arrows: users -> edge -->
+  <line x1="115" y1="150" x2="218" y2="150" stroke="#232F3E" stroke-width="2" marker-end="url(#arrow2)"/>
+  <line x1="115" y1="270" x2="218" y2="270" stroke="#232F3E" stroke-width="2" marker-end="url(#arrow2)"/>
+  <line x1="115" y1="390" x2="218" y2="390" stroke="#232F3E" stroke-width="2" marker-end="url(#arrow2)"/>
+
+  <!-- Edge -> REC -->
+  <line x1="380" y1="150" x2="428" y2="230" stroke="#5B2F9F" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#arrow2)"/>
+  <line x1="380" y1="270" x2="428" y2="280" stroke="#5B2F9F" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#arrow2)"/>
+  <line x1="380" y1="390" x2="428" y2="330" stroke="#5B2F9F" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#arrow2)"/>
+
+  <!-- REC -> Origin -->
+  <line x1="610" y1="280" x2="678" y2="280" stroke="#FF9900" stroke-width="2" marker-end="url(#arrow2)"/>
+  <text x="644" y="270" text-anchor="middle" font-size="10" fill="#FF9900" font-weight="bold">on miss</text>
+
+  <!-- Bottom info bar -->
+  <rect x="30" y="450" width="840" height="85" rx="8" fill="#fff" stroke="#8C4FFF"/>
+  <text x="450" y="475" text-anchor="middle" font-size="13" font-weight="bold" fill="#5B2F9F">Flow: User � Nearest Edge � (Cache Miss) � Regional Edge Cache � (Miss) � Origin � Cached at all tiers</text>
+  <text x="50" y="500" font-size="11" fill="#232F3E"><tspan font-weight="bold">Use Cases:</tspan> Static content distribution | Video streaming | Dynamic content acceleration | DDoS protection (Shield) | WAF integration</text>
+  <text x="50" y="520" font-size="11" fill="#232F3E"><tspan font-weight="bold">Edge Functions:</tspan> CloudFront Functions (lightweight JS) | Lambda@Edge (Node.js/Python with more capability)</text>
+</svg>

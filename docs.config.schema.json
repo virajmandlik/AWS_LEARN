@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AWS Docs to Notion Sync Config",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["tracked"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "settings": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "fetcher": {
+          "type": "string",
+          "enum": ["http", "mcp"],
+          "description": "How to fetch AWS docs. 'http' (default) uses direct CloudFront-cached HTTPS GETs. 'mcp' uses the AWS Knowledge MCP server (rate-limited, may be WAF-blocked from CI runners)."
+        },
+        "userAgent": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "maxDocCharsPerFetch": { "type": "integer", "minimum": 1000, "maximum": 200000 },
+        "fetchConcurrency": { "type": "integer", "minimum": 1, "maximum": 10 },
+        "diff": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "minChangeRatio": { "type": "number", "minimum": 0, "maximum": 1 },
+            "ignoreLineRegex": {
+              "type": "array",
+              "items": { "type": "string" },
+              "maxItems": 50
+            }
+          }
+        },
+        "ai": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "model": { "type": "string", "minLength": 1, "maxLength": 100 },
+            "maxOutputTokens": { "type": "integer", "minimum": 256, "maximum": 16000 },
+            "maxInputCharsPerVersion": {
+              "type": "integer",
+              "minimum": 2000,
+              "maximum": 60000,
+              "description": "Per-version (prev or next) markdown char cap before sending to the AI. Lower for stricter free-tier input token limits (e.g. 12000 for openai/gpt-4o), raise for bigger-context models."
+            },
+            "mergeStrategy": {
+              "type": "string",
+              "enum": ["preserve-user-notes", "overwrite", "append-only"]
+            }
+          }
+        }
+      }
+    },
+    "tracked": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 200,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "awsUrl", "notionPageId"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{0,63}$" },
+          "displayName": { "type": "string", "maxLength": 200 },
+          "awsUrl": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^https://(docs\\.aws\\.amazon\\.com|aws\\.amazon\\.com|docs\\.amplify\\.aws|repost\\.aws/knowledge-center)/"
+          },
+          "notionPageId": { "type": "string", "minLength": 1, "maxLength": 64 },
+          "tags": {
+            "type": "array",
+            "items": { "type": "string", "maxLength": 32 },
+            "maxItems": 16
+          },
+          "watchRecommendations": { "type": "boolean" }
+        }
+      }
+    }
+  }
+}

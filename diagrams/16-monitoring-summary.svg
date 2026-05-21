@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 640" font-family="Arial, sans-serif">
+  <rect width="1100" height="640" fill="#F7F8FA"/>
+  <text x="550" y="40" text-anchor="middle" font-size="24" font-weight="bold" fill="#232F3E">Cloud Monitoring on AWS - Pick the Right Tool</text>
+  <text x="550" y="65" text-anchor="middle" font-size="13" fill="#666" font-style="italic">Each service answers a different question</text>
+
+  <!-- Headers -->
+  <g font-size="13" font-weight="bold">
+    <rect x="40" y="90" width="220" height="40" rx="6" fill="#232F3E"/>
+    <text x="150" y="116" text-anchor="middle" fill="#fff">Service</text>
+
+    <rect x="265" y="90" width="380" height="40" rx="6" fill="#232F3E"/>
+    <text x="455" y="116" text-anchor="middle" fill="#fff">Answers</text>
+
+    <rect x="650" y="90" width="410" height="40" rx="6" fill="#232F3E"/>
+    <text x="855" y="116" text-anchor="middle" fill="#fff">Best for</text>
+  </g>
+
+  <!-- Rows -->
+  <g font-size="12" fill="#232F3E">
+    <!-- CloudWatch -->
+    <rect x="40" y="135" width="220" height="60" rx="6" fill="#FCE4EC" stroke="#FF4F8B"/>
+    <text x="150" y="160" text-anchor="middle" font-weight="bold" fill="#C7077E">CloudWatch</text>
+    <text x="150" y="180" text-anchor="middle" font-size="10">Metrics * Logs * Alarms</text>
+
+    <rect x="265" y="135" width="380" height="60" rx="6" fill="#fff" stroke="#FF4F8B"/>
+    <text x="280" y="158">"How is my workload <tspan font-weight="bold">performing</tspan> right now?"</text>
+    <text x="280" y="180" font-size="11">Health of services, infra utilization, error rates, p99 latency</text>
+
+    <rect x="650" y="135" width="410" height="60" rx="6" fill="#fff" stroke="#FF4F8B"/>
+    <text x="665" y="158">Auto Scaling triggers, SRE dashboards, on-call alerts</text>
+    <text x="665" y="180" font-size="11">Centralised app logs, Container/Lambda Insights</text>
+
+    <!-- EventBridge -->
+    <rect x="40" y="205" width="220" height="60" rx="6" fill="#F3E5F5" stroke="#8C4FFF"/>
+    <text x="150" y="230" text-anchor="middle" font-weight="bold" fill="#8C4FFF">EventBridge</text>
+    <text x="150" y="250" text-anchor="middle" font-size="10">Serverless event bus</text>
+
+    <rect x="265" y="205" width="380" height="60" rx="6" fill="#fff" stroke="#8C4FFF"/>
+    <text x="280" y="228">"What <tspan font-weight="bold">happened</tspan> and what should we do next?"</text>
+    <text x="280" y="250" font-size="11">Route AWS / SaaS / app events to targets in near real-time</text>
+
+    <rect x="650" y="205" width="410" height="60" rx="6" fill="#fff" stroke="#8C4FFF"/>
+    <text x="665" y="228">Event-driven architectures, scheduling, automation</text>
+    <text x="665" y="250" font-size="11">Reacting to AWS state changes (EC2, S3, Health)</text>
+
+    <!-- CloudTrail -->
+    <rect x="40" y="275" width="220" height="60" rx="6" fill="#E1F5FE" stroke="#0073BB"/>
+    <text x="150" y="300" text-anchor="middle" font-weight="bold" fill="#0073BB">CloudTrail</text>
+    <text x="150" y="320" text-anchor="middle" font-size="10">API auditing &amp; governance</text>
+
+    <rect x="265" y="275" width="380" height="60" rx="6" fill="#fff" stroke="#0073BB"/>
+    <text x="280" y="298">"<tspan font-weight="bold">Who did what</tspan> in my AWS account?"</text>
+    <text x="280" y="320" font-size="11">Records all management, data, network &amp; insights events</text>
+
+    <rect x="650" y="275" width="410" height="60" rx="6" fill="#fff" stroke="#0073BB"/>
+    <text x="665" y="298">Compliance, forensic investigation, change tracking</text>
+    <text x="665" y="320" font-size="11">Detecting root login, IAM policy changes, mass deletes</text>
+
+    <!-- X-Ray -->
+    <rect x="40" y="345" width="220" height="60" rx="6" fill="#E8F5E9" stroke="#3F8624"/>
+    <text x="150" y="370" text-anchor="middle" font-weight="bold" fill="#3F8624">X-Ray</text>
+    <text x="150" y="390" text-anchor="middle" font-size="10">Distributed tracing</text>
+
+    <rect x="265" y="345" width="380" height="60" rx="6" fill="#fff" stroke="#3F8624"/>
+    <text x="280" y="368">"<tspan font-weight="bold">Where</tspan> is the latency / error coming from across services?"</text>
+    <text x="280" y="390" font-size="11">Traces a single request across microservices</text>
+
+    <rect x="650" y="345" width="410" height="60" rx="6" fill="#fff" stroke="#3F8624"/>
+    <text x="665" y="368">Microservice debugging, latency optimisation</text>
+    <text x="665" y="390" font-size="11">API Gateway * Lambda * DynamoDB / external APIs</text>
+
+    <!-- CodeGuru -->
+    <rect x="40" y="415" width="220" height="60" rx="6" fill="#FFF3E0" stroke="#FF9900"/>
+    <text x="150" y="440" text-anchor="middle" font-weight="bold" fill="#FF9900">CodeGuru</text>
+    <text x="150" y="460" text-anchor="middle" font-size="10">Reviewer + Profiler</text>
+
+    <rect x="265" y="415" width="380" height="60" rx="6" fill="#fff" stroke="#FF9900"/>
+    <text x="280" y="438">"Is my code <tspan font-weight="bold">clean and efficient</tspan>?"</text>
+    <text x="280" y="460" font-size="11">Static analysis (PRs) + runtime profiling (prod)</text>
+
+    <rect x="650" y="415" width="410" height="60" rx="6" fill="#fff" stroke="#FF9900"/>
+    <text x="665" y="438">Shift-left code review * CPU / latency optimisation</text>
+    <text x="665" y="460" font-size="11">Java / Python apps, JVM profiling on EC2/ECS/Lambda</text>
+
+    <!-- AWS Health -->
+    <rect x="40" y="485" width="220" height="60" rx="6" fill="#E3F2FD" stroke="#1E88E5"/>
+    <text x="150" y="510" text-anchor="middle" font-weight="bold" fill="#1E88E5">AWS Health</text>
+    <text x="150" y="530" text-anchor="middle" font-size="10">Service &amp; account health</text>
+
+    <rect x="265" y="485" width="380" height="60" rx="6" fill="#fff" stroke="#1E88E5"/>
+    <text x="280" y="508">"Is <tspan font-weight="bold">AWS itself</tspan> affecting me right now?"</text>
+    <text x="280" y="530" font-size="11">Outages, scheduled maintenance, end-of-life notices</text>
+
+    <rect x="650" y="485" width="410" height="60" rx="6" fill="#fff" stroke="#1E88E5"/>
+    <text x="665" y="508">Proactive change management, incident awareness</text>
+    <text x="665" y="530" font-size="11">EC2 retirements, RDS cert rotation, security bulletins</text>
+
+    <!-- Config (for completeness, since the section often groups this) -->
+    <rect x="40" y="555" width="220" height="60" rx="6" fill="#FFEBEE" stroke="#C62828"/>
+    <text x="150" y="580" text-anchor="middle" font-weight="bold" fill="#C62828">AWS Config</text>
+    <text x="150" y="600" text-anchor="middle" font-size="10">Config recording (related)</text>
+
+    <rect x="265" y="555" width="380" height="60" rx="6" fill="#fff" stroke="#C62828"/>
+    <text x="280" y="578">"<tspan font-weight="bold">What was my configuration</tspan> at point in time?"</text>
+    <text x="280" y="600" font-size="11">Resource inventory, configuration history, drift</text>
+
+    <rect x="650" y="555" width="410" height="60" rx="6" fill="#fff" stroke="#C62828"/>
+    <text x="665" y="578">Compliance rules, change history, security posture</text>
+    <text x="665" y="600" font-size="11">Complements CloudTrail (who) with state (what)</text>
+  </g>
+</svg>

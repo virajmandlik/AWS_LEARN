@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 720" font-family="Arial, sans-serif">
+  <defs>
+    <marker id="arr22" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#232F3E"/>
+    </marker>
+  </defs>
+  <rect width="1100" height="720" fill="#F7F8FA"/>
+  <text x="550" y="40" text-anchor="middle" font-size="24" font-weight="bold" fill="#232F3E">VPC Endpoints -- Gateway vs Interface</text>
+  <text x="550" y="65" text-anchor="middle" font-size="13" fill="#666" font-style="italic">Private access to AWS services without IGW / NAT / public IPs</text>
+
+  <!-- LEFT: Gateway endpoint -->
+  <rect x="40" y="90" width="500" height="600" rx="10" fill="#fff" stroke="#3F8624" stroke-width="3"/>
+  <rect x="40" y="90" width="500" height="50" rx="10" fill="#3F8624"/>
+  <text x="290" y="122" text-anchor="middle" font-size="18" font-weight="bold" fill="#fff">Gateway Endpoint</text>
+
+  <text x="60" y="170" font-size="13" font-weight="bold" fill="#3F8624">Services supported (only 2):</text>
+  <text x="60" y="190" font-size="12">+ Amazon S3</text>
+  <text x="60" y="207" font-size="12">+ Amazon DynamoDB</text>
+
+  <text x="60" y="237" font-size="13" font-weight="bold" fill="#3F8624">Mechanics:</text>
+  <text x="60" y="257" font-size="12">+ Adds route to route table:  pl-XXXX -&gt; vpce-id</text>
+  <text x="60" y="274" font-size="12">+ Uses AWS-managed prefix list (com.amazonaws.region.s3)</text>
+  <text x="60" y="291" font-size="12">+ NO ENI, NO PrivateLink, NO DNS change</text>
+  <text x="60" y="308" font-size="12">+ Only reachable from inside the SAME VPC (no on-prem)</text>
+
+  <text x="60" y="338" font-size="13" font-weight="bold" fill="#3F8624">Cost:</text>
+  <text x="60" y="358" font-size="12">+ FREE -- no hourly, no data charge</text>
+
+  <!-- diagram -->
+  <rect x="60" y="380" width="460" height="290" rx="8" fill="#F7F8FA" stroke="#666"/>
+  <text x="290" y="402" text-anchor="middle" font-size="12" font-weight="bold" fill="#666">Flow</text>
+  <rect x="80" y="415" width="120" height="50" rx="5" fill="#fff" stroke="#0073BB"/>
+  <text x="140" y="437" text-anchor="middle" font-size="11" font-weight="bold">EC2 in</text>
+  <text x="140" y="453" text-anchor="middle" font-size="10">private subnet</text>
+
+  <line x1="200" y1="440" x2="290" y2="440" stroke="#232F3E" stroke-width="1.5" marker-end="url(#arr22)"/>
+  <text x="245" y="430" text-anchor="middle" font-size="10">route via pl</text>
+
+  <rect x="295" y="415" width="120" height="50" rx="5" fill="#3F8624" stroke="#232F3E"/>
+  <text x="355" y="437" text-anchor="middle" font-size="11" font-weight="bold" fill="#fff">Gateway</text>
+  <text x="355" y="453" text-anchor="middle" font-size="10" fill="#fff">Endpoint</text>
+
+  <line x1="355" y1="465" x2="355" y2="540" stroke="#232F3E" stroke-width="1.5" marker-end="url(#arr22)"/>
+
+  <rect x="225" y="540" width="260" height="50" rx="5" fill="#FF9900" stroke="#232F3E"/>
+  <text x="355" y="562" text-anchor="middle" font-size="11" font-weight="bold" fill="#fff">S3 / DynamoDB (regional service)</text>
+  <text x="355" y="578" text-anchor="middle" font-size="10" fill="#fff">traffic stays on AWS backbone</text>
+
+  <text x="290" y="615" text-anchor="middle" font-size="10" fill="#666">Endpoint policy (resource policy) can</text>
+  <text x="290" y="630" text-anchor="middle" font-size="10" fill="#666">restrict which buckets / tables are reachable</text>
+  <text x="290" y="650" text-anchor="middle" font-size="10" fill="#C7077E" font-weight="bold">Memory hook: "Gateway = route table entry"</text>
+
+  <!-- RIGHT: Interface endpoint -->
+  <rect x="560" y="90" width="500" height="600" rx="10" fill="#fff" stroke="#0073BB" stroke-width="3"/>
+  <rect x="560" y="90" width="500" height="50" rx="10" fill="#0073BB"/>
+  <text x="810" y="122" text-anchor="middle" font-size="18" font-weight="bold" fill="#fff">Interface Endpoint (PrivateLink)</text>
+
+  <text x="580" y="170" font-size="13" font-weight="bold" fill="#0073BB">Services supported:</text>
+  <text x="580" y="190" font-size="12">+ 100+ AWS services (KMS, SQS, SNS, SSM, EC2 API ...)</text>
+  <text x="580" y="207" font-size="12">+ Marketplace partner services + your own services</text>
+  <text x="580" y="224" font-size="12">+ S3 / DynamoDB also support interface mode</text>
+
+  <text x="580" y="254" font-size="13" font-weight="bold" fill="#0073BB">Mechanics:</text>
+  <text x="580" y="274" font-size="12">+ Creates an ENI with a private IP in each chosen subnet</text>
+  <text x="580" y="291" font-size="12">+ Backed by AWS PrivateLink</text>
+  <text x="580" y="308" font-size="12">+ Private DNS -- standard service hostname resolves to ENI</text>
+  <text x="580" y="325" font-size="12">+ Reachable from VPC, peered VPCs, on-prem via VPN/DX</text>
+  <text x="580" y="342" font-size="12">+ Use a Security Group on the endpoint ENIs</text>
+
+  <text x="580" y="372" font-size="13" font-weight="bold" fill="#0073BB">Cost:</text>
+  <text x="580" y="392" font-size="12">+ $0.01/hr per AZ per endpoint + $0.01/GB processed</text>
+
+  <!-- diagram -->
+  <rect x="580" y="410" width="460" height="270" rx="8" fill="#F7F8FA" stroke="#666"/>
+  <text x="810" y="432" text-anchor="middle" font-size="12" font-weight="bold" fill="#666">Flow</text>
+  <rect x="600" y="445" width="120" height="50" rx="5" fill="#fff" stroke="#0073BB"/>
+  <text x="660" y="467" text-anchor="middle" font-size="11" font-weight="bold">EC2 in</text>
+  <text x="660" y="483" text-anchor="middle" font-size="10">private subnet</text>
+
+  <line x1="720" y1="470" x2="800" y2="470" stroke="#232F3E" stroke-width="1.5" marker-end="url(#arr22)"/>
+  <text x="760" y="460" text-anchor="middle" font-size="10">DNS to ENI</text>
+
+  <rect x="805" y="445" width="140" height="50" rx="5" fill="#0073BB" stroke="#232F3E"/>
+  <text x="875" y="467" text-anchor="middle" font-size="11" font-weight="bold" fill="#fff">Interface EP</text>
+  <text x="875" y="483" text-anchor="middle" font-size="10" fill="#fff">ENI + private IP</text>
+
+  <line x1="875" y1="495" x2="875" y2="555" stroke="#232F3E" stroke-width="1.5" marker-end="url(#arr22)"/>
+
+  <rect x="700" y="555" width="350" height="50" rx="5" fill="#FF9900" stroke="#232F3E"/>
+  <text x="875" y="577" text-anchor="middle" font-size="11" font-weight="bold" fill="#fff">AWS service (e.g. KMS, SSM)</text>
+  <text x="875" y="593" text-anchor="middle" font-size="10" fill="#fff">over AWS PrivateLink</text>
+
+  <text x="810" y="630" text-anchor="middle" font-size="10" fill="#666">Endpoint policy +  Security Group  +  Private DNS</text>
+  <text x="810" y="650" text-anchor="middle" font-size="10" fill="#C7077E" font-weight="bold">Memory hook: "Interface = ENI in your subnet"</text>
+</svg>
